@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IG Analyzer PRO - La mejor herramienta para Instagram</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      line-height: 1.6;
+      color: #1f2937;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 30px;
+      opacity: 0.9;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 160px 20px 100px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      background: white;
+      color: #667eea;
+      padding: 16px 40px;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .features {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 30px;
+      border-radius: 10px;
+      background: #f9fafb;
+      transition: transform 0.2s;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .feature h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #374151;
+    }
+
+    .feature p {
+      color: #6b7280;
+    }
+
+    .pricing {
+      background: #f3f4f6;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .pricing h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #1f2937;
+    }
+
+    .pricing-subtitle {
+      font-size: 18px;
+      color: #6b7280;
+      margin-bottom: 50px;
+    }
+
+    .pricing-card {
+      max-width: 400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .price {
+      font-size: 48px;
+      font-weight: bold;
+      color: #4f46e5;
+      margin: 20px 0;
+    }
+
+    .price span {
+      font-size: 18px;
+      color: #6b7280;
+      font-weight: normal;
+    }
+
+    .features-list {
+      list-style: none;
+      margin: 30px 0;
+    }
+
+    .features-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #e5e7eb;
+      color: #4b5563;
+    }
+
+    .features-list li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-button {
+      background: #4f46e5;
+      color: white;
+      padding: 14px 40px;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .pricing-button:hover {
+      background: #4338ca;
+    }
+
+    .testimonials {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .testimonial {
+      background: #f9fafb;
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      color: #4b5563;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .footer {
+      background: #1f2937;
+      color: white;
+      padding: 60px 20px 20px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 20px;
+    }
+
+    .footer-section a {
+      color: #9ca3af;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #374151;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">IG Analyzer PRO</div>
+      <div class="nav-links">
+        <a href="#caracteristicas">Características</a>
+        <a href="#precios">Precios</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>La herramienta definitiva para analizar Instagram</h1>
+    <p>Obtén estadísticas detalladas, análisis de audiencia y métricas avanzadas para hacer crecer tu cuenta</p>
+    <a href="#precios" class="cta-button">Comenzar ahora</a>
+  </section>
+
+  <section id="caracteristicas" class="features">
+    <div class="feature">
+      <div class="feature-icon">📊</div>
+      <h3>Análisis detallado</h3>
+      <p>Estadísticas completas de tus publicaciones, historias y perfil</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">👥</div>
+      <h3>Audiencia</h3>
+      <p>Conoce a tu audiencia: edad, género, ubicación y más</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📈</div>
+      <h3>Crecimiento</h3>
+      <p>Sigue tu progreso con gráficos y métricas de crecimiento</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🏷️</div>
+      <h3>Hashtags</h3>
+      <p>Encuentra los mejores hashtags para tu contenido</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⏰</div>
+      <h3>Mejor momento</h3>
+      <p>Descubre cuándo publicar para máximo engagement</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔍</div>
+      <h3>Competencia</h3>
+      <p>Analiza a tus competidores y aprende de ellos</p>
+    </div>
+  </section>
+
+  <section id="precios" class="pricing">
+    <h2>Precios simples y transparentes</h2>
+    <p class="pricing-subtitle">Elige el plan que mejor se adapte a ti</p>
+    
+    <div class="pricing-card">
+      <h3>PRO Anual</h3>
+      <div class="price">39,99€ <span>/año</span></div>
+      <ul class="features-list">
+        <li>✅ Todas las funciones PRO</li>
+        <li>✅ Análisis ilimitados</li>
+        <li>✅ Historial completo</li>
+        <li>✅ Exportación de datos</li>
+        <li>✅ Soporte prioritario</li>
+        <li>✅ Actualizaciones gratuitas</li>
+      </ul>
+      <button id="buyButton" class="pricing-button">Comprar ahora</button>
+    </div>
+  </section>
+
+  <section id="testimonios" class="testimonials">
+    <h2>Lo que dicen nuestros usuarios</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial">
+        <p>"IG Analyzer PRO me ha ayudado a entender mejor a mi audiencia y a crecer un 200% en 3 meses"</p>
+        <div class="testimonial-author">— María González</div>
+      </div>
+      <div class="testimonial">
+        <p>"La mejor herramienta para influencers. Las métricas son muy precisas y fáciles de entender"</p>
+        <div class="testimonial-author">— Carlos Rodríguez</div>
+      </div>
+      <div class="testimonial">
+        <p>"Increíble la cantidad de datos que proporciona. Vale cada euro"</p>
+        <div class="testimonial-author">— Ana Martínez</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="contacto">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>IG Analyzer PRO</h4>
+        <p>La herramienta más completa para análisis de Instagram</p>
+      </div>
+      <div class="footer-section">
+        <h4>Enlaces rápidos</h4>
+        <a href="#caracteristicas">Características</a>
+        <a href="#precios">Precios</a>
+        <a href="#testimonios">Testimonios</a>
+      </div>
+      <div class="footer-section">
+        <h4>Legal</h4>
+        <a href="#">Términos de uso</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Aviso legal</a>
+      </div>
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <a href="mailto:soporte@igpro-analyzer.com">soporte@igpro-analyzer.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 IG Analyzer PRO. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('buyButton').addEventListener('click', async () => {
+      try {
+        const response = await fetch('https://api.igpro-analyzer.com/api/create-checkout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+        
+        const data = await response.json();
+        
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert('Error al crear la sesión de pago');
+        }
+      } catch (error) {
+        alert('Error de conexión');
+      }
+    });
+  </script>
+</body>
+</html>
