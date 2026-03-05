@@ -34,8 +34,8 @@ module.exports = async (req, res) => {
         expires_at: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
       },
       // ✅ TUS URLs ya están actualizadas
-      success_url: 'https://ig-analyzer-backend.vercel.app/api/success?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'https://ig-analyzer-backend.vercel.app/api/cancel',
+      success_url: 'https://api.igpro-analyzer.com/api/success?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'https://api.igpro-analyzer.com/api/cancel',
     });
 
     return res.status(200).json({ url: session.url });
