@@ -1,8 +1,17 @@
-import { createClient } from "@supabase/supabase-js";
+const { createClient } = require('@supabase/supabase-js');
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+module.exports = async (req, res) => {
+  // Permitir CORS básico
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    return res.status(200).end();
+  }
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
@@ -17,20 +26,19 @@ export default async function handler(req, res) {
       process.env.SUPABASE_SERVICE_ROLE_KEY
     );
 
-    const { data } = await supabase
-      .from("licenses")
-      .select("*")
-      .eq("license_key", licenseKey)
+    const { data, error } = await supabase
+      .from('licenses')
+      .select('*')
+      .eq('license_key', licenseKey)
       .single();
 
-    if (!data || data.status !== "active") {
+    if (error || !data || data.status !== 'active') {
       return res.status(200).json({ valid: false });
     }
 
     return res.status(200).json({ valid: true });
-
   } catch (err) {
-    console.error("Verify error:", err);
-    return res.status(500).json({ error: "Server error" });
+    console.error('Verify error:', err);
+    return res.status(500).json({ error: 'Server error' });
   }
-}
+};

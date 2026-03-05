@@ -1,30 +1,35 @@
-import Stripe from "stripe";
-import { createClient } from "@supabase/supabase-js";
+const Stripe = require('stripe');
+const { createClient } = require('@supabase/supabase-js');
 
-export const config = {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+// Desactivar body parser para webhooks
+module.exports.config = {
   api: {
     bodyParser: false,
   },
 };
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
 function buffer(readable) {
   return new Promise((resolve, reject) => {
     const chunks = [];
-    readable.on("data", chunk => chunks.push(chunk));
-    readable.on("end", () => resolve(Buffer.concat(chunks)));
-    readable.on("error", reject);
+    readable.on('data', (chunk) => chunks.push(chunk));
+    readable.on('end', () => resolve(Buffer.concat(chunks)));
+    readable.on('error', reject);
   });
 }
 
 function generateLicenseKey() {
-  return "IGPRO-" + Math.random().toString(36).substring(2, 10).toUpperCase();
+  return 'IGPRO-' + Math.random().toString(36).substring(2, 10).toUpperCase();
 }
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
+  if (req.method !== 'POST') {
+    return res.status(405).send('Method not allowed');
+  }
+
   const buf = await buffer(req);
-  const sig = req.headers["stripe-signature"];
+  const sig = req.headers['stripe-signature'];
 
   let event;
 
@@ -35,12 +40,17 @@ export default async function handler(req, res) {
       process.env.STRIPE_WEBHOOK_SECRET
     );
   } catch (err) {
-    return res.status(400).send("Webhook error");
+    console.error('Webhook signature error:', err.message);
+    return res.status(400).send('Webhook error');
   }
 
-  if (event.type === "checkout.session.completed") {
+  if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    const email = session.customer_details.email;
+    const email = session.customer_details?.email;
+
+    if (!email) {
+      return res.status(200).json({ received: true });
+    }
 
     const supabase = createClient(
       process.env.SUPABASE_URL,
@@ -49,14 +59,16 @@ export default async function handler(req, res) {
 
     const licenseKey = generateLicenseKey();
 
-    await supabase.from("licenses").insert({
+    const { error } = await supabase.from('licenses').insert({
       license_key: licenseKey,
       email: email,
-      status: "active"
+      status: 'active',
     });
 
-    // Aquí puedes enviar email con Resend más adelante
+    if (error) {
+      console.error('Supabase error:', error);
+    }
   }
 
   res.status(200).json({ received: true });
-}
+};

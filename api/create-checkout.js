@@ -1,36 +1,44 @@
-import Stripe from "stripe";
+const Stripe = require('stripe');
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+module.exports = async (req, res) => {
+  // Permitir CORS básico
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    return res.status(200).end();
+  }
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      mode: "payment",
+      payment_method_types: ['card'],
+      mode: 'payment',
       line_items: [
         {
           price_data: {
-            currency: "eur",
+            currency: 'eur',
             product_data: {
-              name: "IG Analyzer PRO - Lifetime"
+              name: 'IG Analyzer PRO - Lifetime',
             },
-            unit_amount: 1500 // 15€
+            unit_amount: 1500,
           },
-          quantity: 1
-        }
+          quantity: 1,
+        },
       ],
-      success_url: "https://tudominio.com/success",
-      cancel_url: "https://tudominio.com/cancel"
+      success_url: 'https://tudominio.com/success',
+      cancel_url: 'https://tudominio.com/cancel',
     });
 
-    res.status(200).json({ url: session.url });
-
+    return res.status(200).json({ url: session.url });
   } catch (err) {
-    console.error("Stripe error:", err);
-    res.status(500).json({ error: "Stripe error: " + err.message });
+    console.error('Stripe error:', err);
+    return res.status(500).json({ error: err.message });
   }
-}
+};
