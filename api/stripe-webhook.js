@@ -3,7 +3,6 @@ const { createClient } = require('@supabase/supabase-js');
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Desactivar body parser para webhooks
 module.exports.config = {
   api: {
     bodyParser: false,
@@ -58,15 +57,28 @@ module.exports = async (req, res) => {
     );
 
     const licenseKey = generateLicenseKey();
+    
+    // Calcular fecha de expiración (1 año desde ahora)
+    const expiresAt = new Date();
+    expiresAt.setFullYear(expiresAt.getFullYear() + 1);
 
     const { error } = await supabase.from('licenses').insert({
       license_key: licenseKey,
       email: email,
       status: 'active',
+      // Nuevos campos útiles
+      stripe_session_id: session.id,
+      stripe_customer_id: session.customer,
+      amount_total: session.amount_total,
+      expires_at: expiresAt.toISOString(), // ← Guardamos cuándo expira
+      metadata: session.metadata || {}
     });
 
     if (error) {
       console.error('Supabase error:', error);
+    } else {
+      console.log(`✅ Licencia creada: ${licenseKey} para ${email} (expira: ${expiresAt.toISOString()})`);
+      // Aquí puedes enviar email con la licencia
     }
   }
 

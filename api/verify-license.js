@@ -1,7 +1,6 @@
 const { createClient } = require('@supabase/supabase-js');
 
 module.exports = async (req, res) => {
-  // Permitir CORS básico
   res.setHeader('Access-Control-Allow-Origin', '*');
   
   if (req.method === 'OPTIONS') {
@@ -32,11 +31,23 @@ module.exports = async (req, res) => {
       .eq('license_key', licenseKey)
       .single();
 
-    if (error || !data || data.status !== 'active') {
+    if (error || !data) {
       return res.status(200).json({ valid: false });
     }
 
-    return res.status(200).json({ valid: true });
+    // Verificar si está activa Y no ha expirado
+    const now = new Date();
+    const expiresAt = data.expires_at ? new Date(data.expires_at) : null;
+    
+    const isValid = data.status === 'active' && (!expiresAt || expiresAt > now);
+
+    return res.status(200).json({ 
+      valid: isValid,
+      // Opcional: devolver info adicional
+      expires_at: data.expires_at,
+      status: data.status
+    });
+
   } catch (err) {
     console.error('Verify error:', err);
     return res.status(500).json({ error: 'Server error' });
