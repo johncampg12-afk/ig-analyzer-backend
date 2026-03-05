@@ -2,11 +2,13 @@ const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 module.exports = async (req, res) => {
+  // Configurar CORS correctamente (IMPORTANTE para peticiones desde extensiones)
   res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   
+  // Responder a preflight OPTIONS (esto es CRÍTICO para extensiones)
   if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Methods', 'POST');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     return res.status(200).end();
   }
 
@@ -15,25 +17,25 @@ module.exports = async (req, res) => {
   }
 
   try {
-    // Usar el Price ID de tu producto anual
-    const PRICE_ID = 'price_1T4Lc8Rv1AFDOjredmBAxddO'; // ← REEMPLAZA CON TU ID REAL
+    // PRICE_ID ya está correcto
+    const PRICE_ID = 'price_1T4Lc8Rv1AFDOjredmBAxddO';
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      mode: 'payment', // ← IMPORTANTE: payment, NO subscription
+      mode: 'payment',
       line_items: [
         {
-          price: PRICE_ID, // Usamos el price ID existente
+          price: PRICE_ID,
           quantity: 1,
         },
       ],
-      // Metadatos para saber que es una licencia anual
       metadata: {
         type: 'annual_license',
         expires_at: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
       },
-      success_url: 'https://tudominio.com/success?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'https://tudominio.com/cancel',
+      // ✅ TUS URLs ya están actualizadas
+      success_url: 'https://ig-analyzer-backend.vercel.app/api/success?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'https://ig-analyzer-backend.vercel.app/api/cancel',
     });
 
     return res.status(200).json({ url: session.url });
