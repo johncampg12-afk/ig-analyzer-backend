@@ -2,6 +2,12 @@
   "rewrites": [
     {
       "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "igpro-analyzer.com"
+        }
+      ],
       "destination": "/index.html"
     }
   ]
