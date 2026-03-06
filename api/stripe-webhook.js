@@ -181,7 +181,7 @@ module.exports = async (req, res) => {
       `;
 
       const { data, error } = await resend.emails.send({
-        from: 'IG Analyzer PRO <onboarding@resend.dev>',
+        from: 'IG Analyzer PRO <no-reply@igpro-analyzer.com>',
         to: email,
         subject: '🎉 Tu licencia de IG Analyzer PRO está lista',
         html: emailHtml,
