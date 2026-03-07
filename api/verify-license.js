@@ -1,11 +1,32 @@
 const { createClient } = require('@supabase/supabase-js');
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // CONFIGURACIÓN CORS MEJORADA
+  const origin = req.headers.origin;
   
+  // Lista de orígenes permitidos
+  const allowedOrigins = [
+    'https://www.instagram.com',
+    'https://instagram.com',
+    'https://www.igpro-analyzer.com',
+    'https://igpro-analyzer.com'
+  ];
+  
+  // Si el origen está permitido, lo reflejamos
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else {
+    // Para pruebas, permitimos cualquier origen (solo temporal)
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  }
+  
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Max-Age', '86400'); // 24h
+
+  // Responder a OPTIONS inmediatamente (¡CRÍTICO!)
   if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Methods', 'POST');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     return res.status(200).end();
   }
 
@@ -29,13 +50,12 @@ module.exports = async (req, res) => {
       .from('licenses')
       .select('*')
       .eq('license_key', licenseKey)
-      .single();
+      .maybeSingle();
 
     if (error || !data) {
       return res.status(200).json({ valid: false });
     }
 
-    // Verificar si está activa Y no ha expirado
     const now = new Date();
     const expiresAt = data.expires_at ? new Date(data.expires_at) : null;
     
@@ -43,13 +63,12 @@ module.exports = async (req, res) => {
 
     return res.status(200).json({ 
       valid: isValid,
-      // Opcional: devolver info adicional
       expires_at: data.expires_at,
       status: data.status
     });
 
   } catch (err) {
     console.error('Verify error:', err);
-    return res.status(500).json({ error: 'Server error' });
+    return res.status(500).json({ error: err.message });
   }
 };
