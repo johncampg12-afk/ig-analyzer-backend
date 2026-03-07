@@ -1,26 +1,11 @@
 const { createClient } = require('@supabase/supabase-js');
 
 module.exports = async (req, res) => {
-  // CONFIGURACIÓN CORS MEJORADA
-  const origin = req.headers.origin;
+  res.setHeader('Access-Control-Allow-Origin', '*');
   
-  const allowedOrigins = [
-    'https://www.instagram.com',
-    'https://www.igpro-analyzer.com',
-    'https://igpro-analyzer.com'
-  ];
-  
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  } else {
-    res.setHeader('Access-Control-Allow-Origin', 'https://www.igpro-analyzer.com');
-  }
-  
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-
   if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     return res.status(200).end();
   }
 
@@ -44,12 +29,13 @@ module.exports = async (req, res) => {
       .from('licenses')
       .select('*')
       .eq('license_key', licenseKey)
-      .maybeSingle();
+      .single();
 
     if (error || !data) {
       return res.status(200).json({ valid: false });
     }
 
+    // Verificar si está activa Y no ha expirado
     const now = new Date();
     const expiresAt = data.expires_at ? new Date(data.expires_at) : null;
     
@@ -57,12 +43,13 @@ module.exports = async (req, res) => {
 
     return res.status(200).json({ 
       valid: isValid,
+      // Opcional: devolver info adicional
       expires_at: data.expires_at,
       status: data.status
     });
 
   } catch (err) {
     console.error('Verify error:', err);
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: 'Server error' });
   }
 };
