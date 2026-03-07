@@ -1,8 +1,21 @@
 const { createClient } = require('@supabase/supabase-js');
 
 module.exports = async (req, res) => {
-  // CONFIGURACIÓN CORS
-  res.setHeader('Access-Control-Allow-Origin', 'https://www.instagram.com');
+  // CONFIGURACIÓN CORS MEJORADA
+  const origin = req.headers.origin;
+  
+  const allowedOrigins = [
+    'https://www.instagram.com',
+    'https://www.igpro-analyzer.com',
+    'https://igpro-analyzer.com'
+  ];
+  
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', 'https://www.igpro-analyzer.com');
+  }
+  
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
