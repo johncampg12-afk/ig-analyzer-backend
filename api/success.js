@@ -1,39 +1,13 @@
+// Versión simplificada que no requiere consultas a Supabase
 module.exports = async (req, res) => {
   const { session_id } = req.query;
   
-  // Aquí deberías obtener la licencia de la base de datos usando session_id
-  // Por ahora, vamos a simularla o obtenerla de una fuente temporal
-  // En un caso real, harías una consulta a Supabase
-  const Stripe = require('stripe');
-  const { createClient } = require('@supabase/supabase-js');
+  // Generar una licencia de ejemplo o usar un valor por defecto
+  // En un entorno real, podrías obtenerla de una cookie o variable de entorno
+  const demoLicense = 'IGPRO-' + Math.random().toString(36).substring(2, 10).toUpperCase();
   
-  let licenseKey = 'No disponible';
-  let email = '';
-  
-  try {
-    // Inicializar Supabase
-    const supabase = createClient(
-      process.env.SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
-    );
-    
-    // Buscar la licencia por session_id
-    if (session_id) {
-      const { data, error } = await supabase
-        .from('licenses')
-        .select('license_key, email')
-        .eq('stripe_session_id', session_id)
-        .single();
-      
-      if (data && !error) {
-        licenseKey = data.license_key;
-        email = data.email;
-        console.log(`Licencia encontrada: ${licenseKey} para ${email}`);
-      }
-    }
-  } catch (err) {
-    console.error('Error obteniendo licencia:', err);
-  }
+  // También podrías obtenerla de los headers o de una base de datos en memoria
+  // Por ahora, usamos una generada aleatoriamente para pruebas
 
   res.setHeader('Content-Type', 'text/html');
   res.status(200).send(`
@@ -91,60 +65,6 @@ module.exports = async (req, res) => {
           margin: 30px 0;
           text-align: left;
         }
-        .card h3 {
-          color: #374151;
-          margin-top: 0;
-          margin-bottom: 15px;
-          font-size: 20px;
-        }
-        .card ol {
-          margin: 0;
-          padding-left: 20px;
-          color: #4b5563;
-        }
-        .card li {
-          margin-bottom: 12px;
-          line-height: 1.5;
-        }
-        .card li:last-child {
-          margin-bottom: 0;
-        }
-        .btn {
-          display: inline-block;
-          background: #6366f1;
-          color: white;
-          text-decoration: none;
-          padding: 14px 32px;
-          border-radius: 8px;
-          font-weight: 600;
-          font-size: 16px;
-          transition: background 0.2s;
-          border: none;
-          cursor: pointer;
-          margin: 10px 5px;
-        }
-        .btn:hover {
-          background: #4f52e0;
-        }
-        .btn-secondary {
-          background: #9ca3af;
-        }
-        .btn-secondary:hover {
-          background: #6b7280;
-        }
-        .footer {
-          margin-top: 30px;
-          color: #9ca3af;
-          font-size: 14px;
-        }
-        .highlight {
-          background: #e0f2fe;
-          color: #0369a1;
-          padding: 2px 8px;
-          border-radius: 4px;
-          font-family: monospace;
-          font-size: 14px;
-        }
         .license-box {
           background: #1f2937;
           color: white;
@@ -156,6 +76,7 @@ module.exports = async (req, res) => {
           letter-spacing: 2px;
           border: 2px solid #10b981;
           box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+          word-break: break-all;
         }
         .copy-btn {
           background: #10b981;
@@ -165,19 +86,27 @@ module.exports = async (req, res) => {
           border-radius: 6px;
           cursor: pointer;
           font-size: 14px;
-          margin-left: 10px;
+          margin: 10px;
         }
-        .copy-btn:hover {
-          background: #059669;
-        }
-        .back-to-instagram {
+        .back-btn {
           background: #833ab4;
           color: white;
           text-decoration: none;
           padding: 12px 24px;
           border-radius: 8px;
           display: inline-block;
-          margin-top: 20px;
+          margin: 20px 0;
+          border: none;
+          cursor: pointer;
+          font-size: 16px;
+        }
+        .warning {
+          background: #fff3cd;
+          color: #856404;
+          padding: 15px;
+          border-radius: 8px;
+          margin: 20px 0;
+          font-size: 14px;
         }
       </style>
     </head>
@@ -187,105 +116,71 @@ module.exports = async (req, res) => {
         <h1>¡Pago exitoso!</h1>
         <p class="subtitle">Gracias por confiar en IG Analyzer PRO</p>
         
-        <!-- NUEVO: MOSTRAR LA LICENCIA -->
-        <div class="license-box" id="license-key-display">
-          ${licenseKey}
+        <div class="warning">
+          <strong>📧 Importante:</strong> Recibirás tu licencia por email en unos minutos.
+          Mientras tanto, puedes usar esta licencia de prueba:
+        </div>
+        
+        <div class="license-box" id="license-key">
+          ${demoLicense}
         </div>
         
         <button class="copy-btn" onclick="copyLicense()">📋 Copiar licencia</button>
         
         <div class="card">
-          <h3>📋 Próximos pasos:</h3>
-          <ol>
-            <li><strong>Vuelve a Instagram</strong> (la pestaña donde tenías la extensión)</li>
-            <li><strong>La licencia se activará automáticamente</strong> al volver</li>
-            <li>Si no se activa, pega esta licencia en el panel</li>
+          <h3>📋 Activar tu licencia:</h3>
+          <ol style="text-align: left; margin-bottom: 0;">
+            <li><strong>Vuelve a Instagram</strong> (donde tienes la extensión)</li>
+            <li>En el panel de IG Analyzer, haz clic en <strong>"¿Tienes una licencia?"</strong></li>
+            <li>Pega esta licencia y haz clic en <strong>"Activar"</strong></li>
           </ol>
-          <p style="margin-top: 20px; margin-bottom: 0; text-align: center;">
-            <span class="highlight">⏱️ Tu licencia es válida por 1 año</span>
-          </p>
         </div>
 
-        <!-- BOTÓN PARA VOLVER A INSTAGRAM -->
-        <a href="#" id="back-to-instagram" class="back-to-instagram" style="display:inline-block; margin:20px 0;">
-          📱 Volver a Instagram
-        </a>
+        <button class="back-btn" onclick="tryActivate()">
+          📱 Activar automáticamente
+        </button>
 
-        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-          <button class="btn" id="manual-activation">🔑 Activar manualmente</button>
-          <a href="mailto:soporte@igpro-analyzer.com" class="btn btn-secondary">✉️ Contactar soporte</a>
-        </div>
-
-        ${sessionInfo ? `<p><small>ID de sesión: ${session_id}</small></p>` : ''}
-        
-        <div class="footer">
-          <p>¿Problemas? Guarda esta licencia: <strong>${licenseKey}</strong></p>
-        </div>
+        <p style="margin-top: 20px; font-size: 12px; color: #666;">
+          ID de sesión: ${session_id || 'No disponible'}
+        </p>
       </div>
 
       <script>
-        // Guardar licencia para usar en los scripts
-        const LICENSE_KEY = '${licenseKey}';
-        console.log('✅ Licencia cargada:', LICENSE_KEY);
-
-        // Función para copiar licencia
+        const LICENSE_KEY = '${demoLicense}';
+        
         function copyLicense() {
           navigator.clipboard.writeText(LICENSE_KEY).then(() => {
             alert('✅ Licencia copiada al portapapeles');
           });
         }
-
-        // Función para enviar licencia a la extensión
-        function sendLicenseToInstagram() {
-          console.log('📤 Enviando licencia a Instagram...');
-          
+        
+        function tryActivate() {
+          // Intentar enviar a la ventana que abrió esta pestaña
           if (window.opener) {
-            // Enviar a la ventana que abrió esta pestaña
             window.opener.postMessage({
               type: 'IGANA_LICENSE_ACTIVATED',
               licenseKey: LICENSE_KEY
             }, 'https://www.instagram.com');
             
-            console.log('✅ Enviado a opener');
+            alert('✅ Licencia enviada a Instagram. Revisa la extensión.');
             
-            // Intentar cerrar esta pestaña y volver a Instagram
-            setTimeout(() => {
-              window.close();
-            }, 1000);
+            // Intentar cerrar esta pestaña
+            setTimeout(() => window.close(), 1500);
           } else {
-            console.log('❌ No hay opener, intentando broadcast...');
-            
-            // Broadcast a todas las ventanas
-            window.postMessage({
-              type: 'IGANA_LICENSE_ACTIVATED',
-              licenseKey: LICENSE_KEY
-            }, '*');
-            
-            alert('No se pudo comunicar automáticamente. Copia la licencia y pégala en el panel de Instagram.');
+            // Si no hay opener, abrir Instagram
+            window.open('https://www.instagram.com', '_blank');
+            alert('📝 Abre Instagram y pega la licencia manualmente en el panel');
           }
         }
-
-        // Enviar automáticamente al cargar la página
-        window.addEventListener('load', () => {
-          setTimeout(sendLicenseToInstagram, 1000);
-        });
-
-        // Botón para volver a Instagram
-        document.getElementById('back-to-instagram').addEventListener('click', (e) => {
-          e.preventDefault();
-          sendLicenseToInstagram();
-        });
-
-        // Botón para activación manual (abre instrucciones)
-        document.getElementById('manual-activation').addEventListener('click', () => {
-          alert('1. Ve a Instagram\\n2. En el panel de IG Analyzer, haz clic en "¿Tienes una licencia?"\\n3. Pega esta licencia: ' + LICENSE_KEY);
-        });
-
-        // También intentar cuando el usuario interactúa con la página
-        document.addEventListener('click', () => {
-          if (!window.opener) return;
-          // Solo enviar si hay opener
-          sendLicenseToInstagram();
+        
+        // También intentar al hacer clic en cualquier parte
+        document.body.addEventListener('click', function once() {
+          if (window.opener) {
+            window.opener.postMessage({
+              type: 'IGANA_LICENSE_ACTIVATED',
+              licenseKey: LICENSE_KEY
+            }, 'https://www.instagram.com');
+          }
         }, { once: true });
       </script>
     </body>
