@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const PRICE_ID = 'price_1T4LV2Rv1AFDOjreXXX'; // TU PRICE ID
+    const PRICE_ID = 'price_1T4Lc8Rv1AFDOjredmBAxddO'; // TU PRICE ID
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
