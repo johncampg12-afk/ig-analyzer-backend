@@ -1,41 +1,29 @@
 const { createClient } = require('@supabase/supabase-js');
 
 module.exports = async (req, res) => {
-  // Obtener el origen de la petición
+  // ============================================
+  // CORS (igual que antes)
+  // ============================================
   const origin = req.headers.origin;
-  
-  // Detectar si es una extensión de Chrome
   const isChromeExtension = origin && origin.startsWith('chrome-extension://');
   
-  // Configurar CORS
   if (isChromeExtension) {
-    // Para extensiones, devolver el origen exacto
     res.setHeader('Access-Control-Allow-Origin', origin);
-    console.log('✅ Extensión permitida:', origin);
   } else {
-    // Para otros orígenes, permitir los conocidos
     const allowedOrigins = [
       'https://www.instagram.com',
       'https://instagram.com',
       'https://www.igpro-analyzer.com',
       'https://igpro-analyzer.com'
     ];
-    
-    if (allowedOrigins.includes(origin)) {
-      res.setHeader('Access-Control-Allow-Origin', origin);
-    } else {
-      // Fallback a Instagram
-      res.setHeader('Access-Control-Allow-Origin', 'https://www.instagram.com');
-    }
+    res.setHeader('Access-Control-Allow-Origin', allowedOrigins.includes(origin) ? origin : 'https://www.instagram.com');
   }
   
-  // Otros headers CORS
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Access-Control-Max-Age', '86400');
 
-  // Responder a OPTIONS
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -44,11 +32,15 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // ============================================
+  // LÓGICA PRINCIPAL CON CONTROL DE DISPOSITIVO
+  // ============================================
   try {
-    const { licenseKey } = req.body;
+    const { licenseKey, browserId } = req.body;
+    console.log('[API] Verificando licencia:', licenseKey, 'browser:', browserId);
 
-    if (!licenseKey) {
-      return res.status(200).json({ valid: false });
+    if (!licenseKey || !browserId) {
+      return res.status(200).json({ valid: false, reason: 'Faltan datos' });
     }
 
     const supabase = createClient(
@@ -56,6 +48,7 @@ module.exports = async (req, res) => {
       process.env.SUPABASE_SERVICE_ROLE_KEY
     );
 
+    // Buscar la licencia
     const { data, error } = await supabase
       .from('licenses')
       .select('*')
@@ -63,21 +56,72 @@ module.exports = async (req, res) => {
       .maybeSingle();
 
     if (error || !data) {
-      return res.status(200).json({ valid: false });
+      return res.status(200).json({ valid: false, reason: 'Licencia no encontrada' });
     }
 
+    // Verificar si la licencia está activa y no expirada
     const now = new Date();
     const expiresAt = data.expires_at ? new Date(data.expires_at) : null;
-    const isValid = data.status === 'active' && (!expiresAt || expiresAt > now);
+    
+    if (data.status !== 'active' || (expiresAt && expiresAt < now)) {
+      return res.status(200).json({ valid: false, reason: 'Licencia expirada o inactiva' });
+    }
 
-    return res.status(200).json({
-      valid: isValid,
-      expires_at: data.expires_at,
-      status: data.status
-    });
+    // ===== CONTROL DE DISPOSITIVO =====
+    // Si es la primera vez que se usa esta licencia
+    if (!data.browser_id) {
+      console.log('[API] Primera activación para browser:', browserId);
+      
+      // Vincular la licencia a este browserId
+      const { error: updateError } = await supabase
+        .from('licenses')
+        .update({ 
+          browser_id: browserId,
+          last_used_at: now.toISOString()
+        })
+        .eq('license_key', licenseKey);
+
+      if (updateError) {
+        console.error('[API] Error al vincular:', updateError);
+      }
+
+      return res.status(200).json({ 
+        valid: true,
+        expires_at: data.expires_at,
+        status: data.status,
+        first_activation: true
+      });
+    }
+
+    // Si ya tiene un browserId asignado, verificar que coincida
+    if (data.browser_id === browserId) {
+      // Mismo dispositivo - actualizar last_used
+      console.log('[API] Mismo dispositivo, actualizando last_used');
+      
+      await supabase
+        .from('licenses')
+        .update({ last_used_at: now.toISOString() })
+        .eq('license_key', licenseKey);
+
+      return res.status(200).json({ 
+        valid: true,
+        expires_at: data.expires_at,
+        status: data.status
+      });
+    } else {
+      // Dispositivo diferente - BLOQUEAR
+      console.log('[API] ❌ Intento de uso desde otro dispositivo:', browserId);
+      console.log('[API] Dispositivo original:', data.browser_id);
+      
+      return res.status(200).json({ 
+        valid: false, 
+        reason: 'Esta licencia ya está activada en otro dispositivo',
+        error_code: 'ALREADY_ACTIVATED'
+      });
+    }
 
   } catch (err) {
-    console.error('Verify error:', err);
+    console.error('[API] Error interno:', err);
     return res.status(500).json({ error: err.message });
   }
 };

@@ -81,6 +81,7 @@ module.exports = async (req, res) => {
     const expiresAt = new Date();
     expiresAt.setFullYear(expiresAt.getFullYear() + 1);
 
+    // 📦 INSERTAR CON browser_id = null PARA CONTROL DE DISPOSITIVO
     const { error: dbError } = await supabase.from('licenses').insert({
       license_key: licenseKey,
       email: email,
@@ -89,7 +90,10 @@ module.exports = async (req, res) => {
       stripe_customer_id: session.customer,
       amount_total: session.amount_total,
       expires_at: expiresAt.toISOString(),
-      metadata: session.metadata || {}
+      metadata: session.metadata || {},
+      browser_id: null,           // ← NUEVO: Se asignará en primera activación
+      max_activations: 1,         // ← NUEVO: Solo 1 dispositivo permitido
+      last_used_at: null          // ← NUEVO: Se actualizará al usar
     });
 
     if (dbError) {
@@ -97,6 +101,7 @@ module.exports = async (req, res) => {
       // Continuamos para intentar enviar email igualmente
     } else {
       console.log('✅ Licencia guardada:', licenseKey);
+      console.log('📱 Control de dispositivo activado: licencia personal e intransferible');
     }
 
     // 2️⃣ ENVIAR EMAIL (CON TRY/CATCH ESPECÍFICO)
@@ -134,6 +139,14 @@ module.exports = async (req, res) => {
                 <p style="color: #6b7280; margin: 15px 0 0; font-size: 14px;">Válida hasta: <strong>${formatDate(expiresAt)}</strong></p>
               </div>
               
+              <!-- ⚠️ AVISO IMPORTANTE DE SEGURIDAD -->
+              <div style="background: #fff3cd; border-radius: 8px; padding: 15px; margin: 20px 0; border-left: 4px solid #ffc107;">
+                <p style="color: #856404; margin: 0; font-size: 14px;">
+                  <strong>🔒 IMPORTANTE:</strong> Esta licencia es <strong>personal e intransferible</strong>. 
+                  Quedará vinculada al primer dispositivo donde la actives. No podrás usarla en varios ordenadores.
+                </p>
+              </div>
+              
               <!-- Instrucciones -->
               <div style="background: #e0f2fe; border-radius: 8px; padding: 20px; margin: 30px 0;">
                 <h3 style="color: #0369a1; margin: 0 0 15px; font-size: 18px;">📋 Cómo activar tu licencia:</h3>
@@ -166,7 +179,7 @@ module.exports = async (req, res) => {
               
               <!-- Soporte -->
               <div style="background: #fef3c7; border-radius: 8px; padding: 15px; margin: 30px 0; text-align: center;">
-                <p style="color: #92400e; margin: 0;">¿Necesitas ayuda? Responde a este email o contacta con nosotros en <a href="mailto:soporte@iganalyzer.com" style="color: #b45309; font-weight: 600;">soporte@iganalyzer.com</a></p>
+                <p style="color: #92400e; margin: 0;">¿Necesitas ayuda? Responde a este email o contacta con nosotros en <a href="mailto:soporte@igpro-analyzer.com" style="color: #b45309; font-weight: 600;">soporte@igpro-analyzer.com</a></p>
               </div>
             </div>
             
