@@ -2,24 +2,33 @@ const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 module.exports = async (req, res) => {
-  // CORS
+  // ============================================
+  // CONFIGURACIÓN CORS
+  // ============================================
   const origin = req.headers.origin;
+  
   const allowedOrigins = [
     'https://www.instagram.com',
     'https://instagram.com',
     'https://www.igpro-analyzer.com',
-    'https://igpro-analyzer.com'
+    'https://igpro-analyzer.com',
+    /^chrome-extension:\/\/[a-z]{32}$/i
   ];
   
-  if (allowedOrigins.includes(origin)) {
+  const isChromeExtension = origin && origin.startsWith('chrome-extension://');
+  
+  if (isChromeExtension) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else if (allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   } else {
     res.setHeader('Access-Control-Allow-Origin', 'https://www.igpro-analyzer.com');
   }
   
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Max-Age', '86400');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -30,17 +39,12 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const PRICE_ID = 'price_1T4Lc8Rv1AFDOjredmBAxddO'; // TU PRICE ID
+    const PRICE_ID = 'price_1T4Lc8Rv1AFDOjredmBAxddO'; // ← TU PRICE ID
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
-      line_items: [
-        {
-          price: PRICE_ID,
-          quantity: 1,
-        },
-      ],
+      line_items: [{ price: PRICE_ID, quantity: 1 }],
       metadata: {
         type: 'annual_license',
         expires_at: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
