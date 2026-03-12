@@ -3,430 +3,1598 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IG Analyzer PRO - La mejor herramienta para Instagram</title>
+  <title>IG Analyzer - Descubre quién no te sigue en Instagram</title>
+  <meta name="description" content="La herramienta favorita de los instagramers para saber quién no te sigue. Rápido, divertido y muy fácil de usar.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="IG Analyzer - ¿Quién no te sigue?">
+  <meta property="og:description" content="Descubre en segundos qué cuentas no te siguen de vuelta ⚡">
+  <meta property="og:image" content="https://www.igpro-analyzer.com/og-image.jpg">
+  <meta property="og:url" content="https://www.igpro-analyzer.com">
+  
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
+    
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      font-family: 'Outfit', sans-serif;
+      background: #ffffff;
+      color: #1e1b4b;
       line-height: 1.6;
-      color: #1f2937;
-    }
-
-    .header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 20px 0;
-      position: fixed;
+      overflow-x: hidden;
       width: 100%;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
     }
-
-    .nav {
+    
+    .container {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+    
+    /* DECORACIONES CON GRADIENTE INSTAGRAM */
+    .blob {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(135deg, #405DE6 0%, #5851DB 100%);
+      border-radius: 50%;
+      filter: blur(60px);
+      z-index: -1;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    
+    .blob-1 {
+      top: -100px;
+      right: -100px;
+      background: linear-gradient(135deg, #E1306C 0%, #FD1D1D 100%);
+    }
+    
+    .blob-2 {
+      bottom: -100px;
+      left: -100px;
+      background: linear-gradient(135deg, #833AB4 0%, #C13584 100%);
+    }
+    
+    /* HEADER */
+    .header {
+      position: sticky;
+      top: 20px;
+      z-index: 100;
+      margin: 20px auto;
+      max-width: 1200px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 100px;
+      padding: 12px 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid #f1f5f9;
+      width: calc(100% - 48px);
+    }
+    
+    .header .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 20px;
+      padding: 0;
     }
-
+    
     .logo {
-      font-size: 24px;
-      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-
-    .nav-links a {
+    
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: white;
-      text-decoration: none;
-      margin-left: 30px;
-      opacity: 0.9;
-      transition: opacity 0.2s;
-    }
-
-    .nav-links a:hover {
-      opacity: 1;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 160px 20px 100px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 48px;
-      max-width: 800px;
-      margin: 0 auto 20px;
-    }
-
-    .hero p {
       font-size: 20px;
-      max-width: 600px;
-      margin: 0 auto 40px;
-      opacity: 0.9;
+      transform: rotate(-5deg);
+      transition: transform 0.3s;
     }
-
-    .cta-button {
-      background: white;
-      color: #667eea;
-      padding: 16px 40px;
-      font-size: 18px;
-      font-weight: 600;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+    
+    .logo:hover .logo-icon {
+      transform: rotate(5deg) scale(1.1);
+    }
+    
+    .logo-text {
+      font-weight: 700;
+      font-size: 22px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+    
+    .nav-links a {
       text-decoration: none;
+      color: #475569;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 8px 0;
+      position: relative;
+    }
+    
+    .nav-links a:hover {
+      color: #E1306C;
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      transition: width 0.3s;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .btn {
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #f1f5f9;
+      color: #1e1b4b;
+    }
+    
+    .btn-outline:hover {
+      border: 2px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D) border-box;
+      transform: translateY(-2px);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      color: white;
+      box-shadow: 0 8px 20px -8px #E1306C;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 28px -8px #E1306C;
+    }
+    
+    /* HERO */
+    .hero {
+      padding: 60px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    
+    .hero-left {
+      position: relative;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff5f7;
+      padding: 8px 20px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      border: 1px solid #fecdd3;
+      color: #E1306C;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    .hero-badge i {
+      font-size: 16px;
+      color: #405DE6;
+    }
+    
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: #1e1b4b;
+    }
+    
+    .hero-highlight {
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       display: inline-block;
     }
-
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    
+    .hero p {
+      font-size: 18px;
+      color: #475569;
+      margin-bottom: 32px;
     }
-
-    .features {
-      max-width: 1200px;
-      margin: 80px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    
+    .hero-cta .btn {
+      padding: 16px 36px;
+      font-size: 16px;
+    }
+    
+    .hero-stats {
+      display: flex;
       gap: 40px;
     }
-
-    .feature {
-      text-align: center;
+    
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .stat-number {
+      font-size: 32px;
+      font-weight: 800;
+      color: #1e1b4b;
+      line-height: 1.2;
+    }
+    
+    .stat-label {
+      color: #64748b;
+      font-size: 14px;
+    }
+    
+    .hero-right {
+      position: relative;
+    }
+    
+    .hero-card {
+      background: white;
+      border-radius: 40px;
       padding: 30px;
-      border-radius: 10px;
-      background: #f9fafb;
-      transition: transform 0.2s;
+      box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.2);
+      border: 1px solid #f1f5f9;
+      position: relative;
+      animation: float 4s infinite ease-in-out;
     }
-
-    .feature:hover {
-      transform: translateY(-5px);
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
     }
-
-    .feature-icon {
-      font-size: 48px;
+    
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 20px;
     }
-
-    .feature h3 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: #374151;
+    
+    .hero-card-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-
-    .feature p {
-      color: #6b7280;
+    
+    .hero-card-avatar {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
     }
-
-    .pricing {
-      background: #f3f4f6;
-      padding: 80px 20px;
+    
+    .hero-card-info h4 {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .hero-card-info p {
+      color: #64748b;
+      font-size: 14px;
+    }
+    
+    .hero-card-badge {
+      background: #f1f5f9;
+      color: #405DE6;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .hero-card-badge i {
+      color: #E1306C;
+    }
+    
+    .hero-card-list {
+      background: #f8fafc;
+      border-radius: 24px;
+      padding: 20px;
+    }
+    
+    .hero-card-list-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    
+    .hero-card-list-title i {
+      color: #E1306C;
+    }
+    
+    .hero-card-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      background: white;
+      border-radius: 16px;
+      margin-bottom: 8px;
+      border: 1px solid #f1f5f9;
+    }
+    
+    .hero-card-item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .hero-card-item-avatar {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .hero-card-item-name {
+      font-weight: 500;
+    }
+    
+    .hero-card-item-username {
+      color: #64748b;
+      font-size: 13px;
+    }
+    
+    .hero-card-item-badge {
+      background: #fee2e2;
+      color: #E1306C;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    /* FEATURES */
+    .features {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border-radius: 60px 60px 0 0;
+      margin-top: 60px;
+    }
+    
+    .section-header {
       text-align: center;
+      margin-bottom: 60px;
     }
-
-    .pricing h2 {
-      font-size: 36px;
+    
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      padding: 8px 20px;
+      border-radius: 50px;
       margin-bottom: 20px;
-      color: #1f2937;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    }
+    
+    .section-badge i {
+      color: #E1306C;
+    }
+    
+    .section-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1e1b4b;
+    }
+    
+    .section-subtitle {
+      color: #64748b;
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    
+    .feature-card {
+      background: white;
+      border-radius: 40px;
+      padding: 40px 30px;
+      box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.1);
+      border: 1px solid #f1f5f9;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      transform: translateX(-100%);
+      transition: transform 0.5s;
+    }
+    
+    .feature-card:hover::before {
+      transform: translateX(0);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px -20px rgba(225, 48, 108, 0.2);
+    }
+    
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: white;
+      font-size: 24px;
+      transition: all 0.3s;
+    }
+    
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 10px 25px -5px #E1306C;
+    }
+    
+    .feature-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    
+    .feature-card p {
+      color: #64748b;
+    }
+    
+    /* HOW IT WORKS */
+    .how-it-works {
+      padding: 80px 0;
+    }
+    
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+    
+    .step {
+      text-align: center;
+      position: relative;
+    }
+    
+    .step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -30px;
+      top: 30px;
+      font-size: 30px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 300;
+    }
+    
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      color: white;
+      font-weight: 700;
+      font-size: 24px;
+      box-shadow: 0 10px 25px -5px #E1306C;
+    }
+    
+    .step h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    
+    .step p {
+      color: #64748b;
+    }
+    
+    /* PRICING */
+    .pricing {
+      padding: 80px 0;
+      background: #ffffff;
+      border-radius: 60px 60px 0 0;
     }
 
-    .pricing-subtitle {
-      font-size: 18px;
-      color: #6b7280;
-      margin-bottom: 50px;
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 60px;
     }
 
     .pricing-card {
-      max-width: 400px;
-      margin: 0 auto;
       background: white;
-      border-radius: 20px;
+      border-radius: 40px;
       padding: 40px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 2px solid #f1f5f9;
+      position: relative;
+      transition: all 0.3s;
     }
 
+    .pricing-card:hover {
+      border: 2px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D) border-box;
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px -20px rgba(225, 48, 108, 0.3);
+    }
+
+    .pricing-card.popular {
+      border: 2px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D) border-box;
+      box-shadow: 0 20px 40px -10px rgba(225, 48, 108, 0.3);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      color: white;
+      padding: 6px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      box-shadow: 0 5px 15px -5px #E1306C;
+      z-index: 10;
+    }
+    
+    .pricing-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: white;
+      font-size: 20px;
+    }
+    
+    .pricing-card h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    
     .price {
       font-size: 48px;
-      font-weight: bold;
-      color: #4f46e5;
-      margin: 20px 0;
+      font-weight: 800;
+      color: #1e1b4b;
+      margin-bottom: 8px;
     }
-
+    
     .price span {
-      font-size: 18px;
-      color: #6b7280;
-      font-weight: normal;
+      font-size: 16px;
+      color: #64748b;
+      font-weight: 400;
     }
-
-    .features-list {
+    
+    .price-description {
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+    
+    .pricing-features {
       list-style: none;
       margin: 30px 0;
     }
-
-    .features-list li {
+    
+    .pricing-features li {
       padding: 10px 0;
-      border-bottom: 1px solid #e5e7eb;
-      color: #4b5563;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #475569;
     }
-
-    .features-list li:last-child {
-      border-bottom: none;
+    
+    .pricing-features i {
+      color: #E1306C;
     }
-
-    .pricing-button {
-      background: #4f46e5;
-      color: white;
-      padding: 14px 40px;
-      font-size: 18px;
-      font-weight: 600;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.2s;
-      text-decoration: none;
-      display: inline-block;
+    
+    .pricing-features .disabled {
+      opacity: 0.5;
+    }
+    
+    .pricing-card .btn {
       width: 100%;
+      padding: 16px;
+      font-size: 16px;
     }
-
-    .pricing-button:hover {
-      background: #4338ca;
-    }
-
+    
+    /* TESTIMONIALS */
     .testimonials {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border-radius: 60px;
     }
-
-    .testimonials h2 {
-      text-align: center;
-      font-size: 36px;
-      margin-bottom: 50px;
-    }
-
-    .testimonial-grid {
+    
+    .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 30px;
+      margin-top: 60px;
     }
-
-    .testimonial {
-      background: #f9fafb;
-      padding: 30px;
-      border-radius: 10px;
+    
+    .testimonial-card {
+      background: white;
+      border-radius: 30px;
+      padding: 40px;
+      border: 1px solid #f1f5f9;
+      transition: all 0.3s;
     }
-
-    .testimonial p {
+    
+    .testimonial-card:hover {
+      border: 1px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D) border-box;
+      transform: scale(1.02);
+      box-shadow: 0 20px 40px -20px rgba(225, 48, 108, 0.3);
+    }
+    
+    .testimonial-rating {
+      color: #fbbf24;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    
+    .testimonial-text {
+      color: #475569;
+      margin-bottom: 24px;
+      line-height: 1.7;
       font-style: italic;
-      color: #4b5563;
-      margin-bottom: 20px;
     }
-
+    
     .testimonial-author {
-      font-weight: 600;
-      color: #1f2937;
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
-
-    .footer {
-      background: #1f2937;
+    
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: white;
-      padding: 60px 20px 20px;
+      font-weight: 600;
     }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
+    
+    .testimonial-info h4 {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .testimonial-info p {
+      color: #64748b;
+      font-size: 14px;
+    }
+    
+    /* FAQ */
+    .faq {
+      padding: 80px 0;
+    }
+    
+    .faq-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 60px;
     }
-
-    .footer-section h4 {
+    
+    .faq-item {
+      background: white;
+      border: 1px solid #f1f5f9;
+      border-radius: 30px;
+      padding: 30px;
+      transition: all 0.3s;
+    }
+    
+    .faq-item:hover {
+      border: 1px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D) border-box;
+      box-shadow: 0 10px 30px -15px rgba(225, 48, 108, 0.2);
+    }
+    
+    .faq-question {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    
+    .faq-question i {
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 20px;
+    }
+    
+    .faq-answer {
+      color: #64748b;
+      padding-left: 32px;
+    }
+    
+    /* CTA GRANDE */
+    .cta-large {
+      padding: 80px 0;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      border-radius: 60px;
+      text-align: center;
+      color: white;
+      margin: 40px 0;
+    }
+    
+    .cta-large h2 {
+      font-size: 48px;
+      font-weight: 800;
       margin-bottom: 20px;
     }
-
-    .footer-section a {
-      color: #9ca3af;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 10px;
+    
+    .cta-large p {
+      font-size: 20px;
+      opacity: 0.9;
+      margin-bottom: 40px;
     }
-
-    .footer-section a:hover {
+    
+    .cta-large .btn {
+      background: white;
+      color: #E1306C;
+      padding: 18px 48px;
+      font-size: 18px;
+    }
+    
+    .cta-large .btn:hover {
+      transform: scale(1.05);
+      background: #f8fafc;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* FOOTER */
+    .footer {
+      background: #1e1b4b;
       color: white;
+      padding: 60px 0;
+      border-radius: 60px 60px 0 0;
     }
-
-    .footer-bottom {
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-logo {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .footer-logo i {
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .footer-description {
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      transform: translateY(-3px);
+    }
+    
+    .footer-links h4 {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: #E1306C;
+    }
+    
+    .copyright {
       text-align: center;
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid #374151;
-      color: #9ca3af;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
     }
-
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 36px;
+    
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
       }
-
-      .hero p {
-        font-size: 18px;
+      
+      .features-grid,
+      .pricing-grid,
+      .testimonials-grid,
+      .faq-grid,
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
-
+      
       .nav-links {
         display: none;
+      }
+      
+      .step:not(:last-child)::after {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+      
+      .features-grid,
+      .pricing-grid,
+      .testimonials-grid,
+      .faq-grid,
+      .footer-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+      
+      .cta-large h2 {
+        font-size: 32px;
       }
     }
   </style>
 </head>
 <body>
+  <!-- DECORACIONES CON GRADIENTE -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <!-- HEADER -->
   <header class="header">
-    <nav class="nav">
-      <div class="logo">IG Analyzer PRO</div>
-      <div class="nav-links">
-        <a href="#caracteristicas">Características</a>
-        <a href="#precios">Precios</a>
-        <a href="#testimonios">Testimonios</a>
-        <a href="#contacto">Contacto</a>
+    <div class="container">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <span class="logo-text">IG Analyzer</span>
       </div>
-    </nav>
+      
+      <nav class="nav-links">
+        <a href="#caracteristicas"><i class="fas fa-crown"></i> Características</a>
+        <a href="#como-funciona"><i class="fas fa-compass"></i> Cómo funciona</a>
+        <a href="#precios"><i class="fas fa-tag"></i> Precios</a>
+        <a href="#faq"><i class="fas fa-circle-question"></i> FAQ</a>
+        <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+      </nav>
+      
+      <div>
+        <button class="btn btn-outline" onclick="window.open('https://www.instagram.com', '_blank')">
+          <i class="fab fa-instagram"></i> Abrir Instagram
+        </button>
+      </div>
+    </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
-    <h1>La herramienta definitiva para analizar Instagram</h1>
-    <p>Obtén estadísticas detalladas, análisis de audiencia y métricas avanzadas para hacer crecer tu cuenta</p>
-    <a href="#precios" class="cta-button">Comenzar ahora</a>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="hero-badge">
+            <i class="fas fa-fire"></i>
+            <span>Más de 50,000 usuarios activos</span>
+          </div>
+          
+          <h1>
+            ¿Quién te ha <span class="hero-highlight">dejado de seguir</span> en Instagram?
+          </h1>
+          
+          <p>Descubre en segundos qué cuentas no te siguen de vuelta. Simple, rápido y muy divertido. Únete a la comunidad más cotilla de Instagram.</p>
+          
+          <div class="hero-cta">
+            <button class="btn btn-primary" id="comprar-hero">
+              <i class="fas fa-arrow-right"></i> Comprar ahora
+            </button>
+            <button class="btn btn-outline" id="ver-demo">
+              <i class="fas fa-play"></i> Ver demo
+            </button>
+          </div>
+          
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number">150</span>
+              <span class="stat-label">Usuarios de media no te siguen</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">⭐ 4.9</span>
+              <span class="stat-label">Nuestra valoración</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">5min</span>
+              <span class="stat-label">es lo que tardas</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hero-right">
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <div class="hero-card-user">
+                <div class="hero-card-avatar">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="hero-card-info">
+                  <h4>@tu_usuario</h4>
+                  <p>1,234 seguidores · 1,567 seguidos</p>
+                </div>
+              </div>
+              <div class="hero-card-badge">
+                <i class="fas fa-bolt"></i> LIVE
+              </div>
+            </div>
+            
+            <div class="hero-card-list">
+              <div class="hero-card-list-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>No te siguen de vuelta</span>
+              </div>
+              
+              <div class="hero-card-item">
+                <div class="hero-card-item-left">
+                  <div class="hero-card-item-avatar">JS</div>
+                  <div>
+                    <div class="hero-card-item-name">Julia Sánchez</div>
+                    <div class="hero-card-item-username">@juliasanchez</div>
+                  </div>
+                </div>
+                <div class="hero-card-item-badge">No te sigue</div>
+              </div>
+              
+              <div class="hero-card-item">
+                <div class="hero-card-item-left">
+                  <div class="hero-card-item-avatar">MG</div>
+                  <div>
+                    <div class="hero-card-item-name">Miguel Gómez</div>
+                    <div class="hero-card-item-username">@miguelgomez</div>
+                  </div>
+                </div>
+                <div class="hero-card-item-badge">No te sigue</div>
+              </div>
+              
+              <div class="hero-card-item">
+                <div class="hero-card-item-left">
+                  <div class="hero-card-item-avatar">CL</div>
+                  <div>
+                    <div class="hero-card-item-name">Carla López</div>
+                    <div class="hero-card-item-username">@carlalopez</div>
+                  </div>
+                </div>
+                <div class="hero-card-item-badge">No te sigue</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="caracteristicas" class="features">
-    <div class="feature">
-      <div class="feature-icon">📊</div>
-      <h3>Análisis detallado</h3>
-      <p>Estadísticas completas de tus publicaciones, historias y perfil</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">👥</div>
-      <h3>Audiencia</h3>
-      <p>Conoce a tu audiencia: edad, género, ubicación y más</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">📈</div>
-      <h3>Crecimiento</h3>
-      <p>Sigue tu progreso con gráficos y métricas de crecimiento</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🏷️</div>
-      <h3>Hashtags</h3>
-      <p>Encuentra los mejores hashtags para tu contenido</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">⏰</div>
-      <h3>Mejor momento</h3>
-      <p>Descubre cuándo publicar para máximo engagement</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🔍</div>
-      <h3>Competencia</h3>
-      <p>Analiza a tus competidores y aprende de ellos</p>
-    </div>
-  </section>
-
-  <section id="precios" class="pricing">
-    <h2>Precios simples y transparentes</h2>
-    <p class="pricing-subtitle">Elige el plan que mejor se adapte a ti</p>
-    
-    <div class="pricing-card">
-      <h3>PRO Anual</h3>
-      <div class="price">39,99€ <span>/año</span></div>
-      <ul class="features-list">
-        <li>✅ Todas las funciones PRO</li>
-        <li>✅ Análisis ilimitados</li>
-        <li>✅ Historial completo</li>
-        <li>✅ Exportación de datos</li>
-        <li>✅ Soporte prioritario</li>
-        <li>✅ Actualizaciones gratuitas</li>
-      </ul>
-      <button id="buyButton" class="pricing-button">Comprar ahora</button>
-    </div>
-  </section>
-
-  <section id="testimonios" class="testimonials">
-    <h2>Lo que dicen nuestros usuarios</h2>
-    <div class="testimonial-grid">
-      <div class="testimonial">
-        <p>"IG Analyzer PRO me ha ayudado a entender mejor a mi audiencia y a crecer un 200% en 3 meses"</p>
-        <div class="testimonial-author">— María González</div>
+  <!-- FEATURES -->
+  <section class="features" id="caracteristicas">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <i class="fas fa-crown"></i> Todo lo que necesitas
+        </div>
+        <h2 class="section-title">Funcionalidades profesionales</h2>
+        <p class="section-subtitle">Una herramienta simple pero poderosa para los más curiosos</p>
       </div>
-      <div class="testimonial">
-        <p>"La mejor herramienta para influencers. Las métricas son muy precisas y fáciles de entender"</p>
-        <div class="testimonial-author">— Carlos Rodríguez</div>
-      </div>
-      <div class="testimonial">
-        <p>"Increíble la cantidad de datos que proporciona. Vale cada euro"</p>
-        <div class="testimonial-author">— Ana Martínez</div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-users-slash"></i>
+          </div>
+          <h3>Detección inmediata</h3>
+          <p>Descubre al instante qué cuentas no te siguen de vuelta.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Estadísticas detalladas</h3>
+          <p>Análisis completo de tu audiencia y su comportamiento.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield"></i>
+          </div>
+          <h3>Seguridad garantizada</h3>
+          <p>No almacenamos tus datos. Todo es local y privado.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer class="footer" id="contacto">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>IG Analyzer PRO</h4>
-        <p>La herramienta más completa para análisis de Instagram</p>
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="como-funciona">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <i class="fas fa-compass"></i> Así de fácil
+        </div>
+        <h2 class="section-title">3 pasos y ya estás cotilleando</h2>
+        <p class="section-subtitle">Más simple imposible</p>
       </div>
-      <div class="footer-section">
-        <h4>Enlaces rápidos</h4>
-        <a href="#caracteristicas">Características</a>
-        <a href="#precios">Precios</a>
-        <a href="#testimonios">Testimonios</a>
-      </div>
-      <div class="footer-section">
-        <h4>Legal</h4>
-        <a href="#">Términos de uso</a>
-        <a href="#">Política de privacidad</a>
-        <a href="#">Aviso legal</a>
-      </div>
-      <div class="footer-section">
-        <h4>Contacto</h4>
-        <a href="mailto:soporte@igpro-analyzer.com">soporte@igpro-analyzer.com</a>
+      
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Instala la extensión</h3>
+          <p>Añade IG Analyzer a tu navegador favorito</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Ve a tu perfil</h3>
+          <p>Abre Instagram y navega hasta tu cuenta</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>¡Sorpresa!</h3>
+          <p>Haz clic en el botón Analizar y obtén la lista de quienes no te siguen. Prepárate para las sorpresas.</p>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      &copy; 2026 IG Analyzer PRO. Todos los derechos reservados.
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="precios">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <i class="fas fa-tag"></i> Precios claros
+        </div>
+        <h2 class="section-title">Paga una vez y cotillea todo el año</h2>
+        <p class="section-subtitle">Menos de 2,50€ al mes. Más barato que un café a la semana.</p>
+      </div>
+      
+      <div class="pricing-grid">
+        <!-- Plan DEMO -->
+        <div class="pricing-card">
+          <div class="pricing-icon">
+            <i class="fas fa-flask"></i>
+          </div>
+          <h3>Modo DEMO</h3>
+          <div class="price">GRATIS <span></span></div>
+          <div class="price-description">Para probar sin compromiso</div>
+          
+          <ul class="pricing-features">
+            <li><i class="fas fa-check-circle"></i> 8 Análisis gratuitos</li>
+            <li><i class="fas fa-check-circle"></i> Lista limitada a 3 personas</li>
+            <li><i class="fas fa-check-circle disabled"></i> Lista completa</li>
+            <li><i class="fas fa-check-circle disabled"></i> 1 dispositivo</li>
+          </ul>
+          
+          <button class="btn btn-outline comprar-btn" data-plan="demo">
+            Tu Plan Actual
+          </button>
+        </div>
+        
+        <!-- Plan Anual (POPULAR) -->
+        <div class="pricing-card popular">
+          <div class="popular-tag">MÁS POPULAR</div>
+          <div class="pricing-icon">
+            <i class="fas fa-crown"></i>
+          </div>
+          <h3>Plan Anual</h3>
+          <div class="price">29,99€ <span>/año</span></div>
+          <div class="price-description">Ahorras 20€</div>
+          
+          <ul class="pricing-features">
+            <li><i class="fas fa-check-circle"></i> Análisis ilimitados</li>
+            <li><i class="fas fa-check-circle"></i> Lista completa</li>
+            <li><i class="fas fa-check-circle"></i> Actualizaciones y futuras nuevas funciones gratis</li>
+            <li><i class="fas fa-check-circle"></i> 1 dispositivo</li>
+            <li><i class="fas fa-check-circle"></i> Soporte prioritario</li>
+          </ul>
+          
+          <button class="btn btn-primary comprar-btn" data-plan="annual">
+            Elegir anual
+          </button>
+        </div>
+        
+        <!-- Plan Lifetime -->
+        <div class="pricing-card">
+          <div class="pricing-icon">
+            <i class="fas fa-infinity"></i>
+          </div>
+          <h3>Lifetime</h3>
+          <div class="price">99€ <span>pago único</span></div>
+          <div class="price-description">Paga una vez, usa siempre</div>
+          
+          <ul class="pricing-features">
+            <li><i class="fas fa-check-circle"></i> Todo del plan anual</li>
+            <li><i class="fas fa-check-circle"></i> Para siempre</li>
+            <li><i class="fas fa-check-circle"></i> Actualizaciones y futuras nuevas funciones gratis</li>
+            <li><i class="fas fa-check-circle"></i> 2 dispositivos, para compartir con un amigo</li>
+            <li><i class="fas fa-check-circle"></i> Soporte prioritario</li>
+          </ul>
+          
+          <button class="btn btn-outline comprar-btn" data-plan="lifetime">
+            Elegir lifetime
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonios">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <i class="fas fa-comment"></i> Testimonios
+        </div>
+        <h2 class="section-title">Lo que dicen nuestros usuarios</h2>
+        <p class="section-subtitle">Miles de personas ya lo usan</p>
+      </div>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Descubrí que 47 cuentas no me seguían. Las eliminé y mi engagement mejoró notablemente."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MB</div>
+            <div class="testimonial-info">
+              <h4>M. B.</h4>
+              <p>@belen.mariii</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Descubrí que mi ex me había dejado de seguir. Mejor saberlo y pasar página."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">TB</div>
+            <div class="testimonial-info">
+              <h4>Teresa Benito</h4>
+              <p>@teresa.benitoo</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Mi prima me siguió y luego me dejó de seguir. Con IG Analyzer la descubrí. La cena de navidad va a ser divertida."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">EC</div>
+            <div class="testimonial-info">
+              <h4>E.C.</h4>
+              <p>@enrico_cavalli_</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">
+          <i class="fas fa-circle-question"></i> FAQ
+        </div>
+        <h2 class="section-title">Preguntas frecuentes</h2>
+        <p class="section-subtitle">Resolvemos tus dudas</p>
+      </div>
+      
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question">
+            <i class="fas fa-shield"></i> ¿Es seguro?
+          </div>
+          <div class="faq-answer">
+            Totalmente. No pedimos tu contraseña. Todo el análisis se hace localmente en tu navegador.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <i class="fas fa-mobile"></i> ¿Funciona en móvil?
+          </div>
+          <div class="faq-answer">
+            No, por el momento solo se puede en el ordenador, pero estamos desarrollando IG Analyzer 1.2, que SI se podrá usar en el móvil.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <i class="fas fa-clock"></i> ¿Cuánto tarda?
+          </div>
+          <div class="faq-answer">
+            Entre 5 y 8 minutos, dependiendo de tu número de seguidores, tu número de seguidos y la velocidad de conexión a internet.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <i class="fas fa-refresh"></i> ¿Puedo usarlo a diario?
+          </div>
+          <div class="faq-answer">
+            ¡Claro! Las veces que quieras, pero con precaución. Deja un intervalo de tiempo entre análisis y análisis para evitar problemas con Instagram.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <i class="fas fa-credit-card"></i> ¿Cómo funciona el pago?
+          </div>
+          <div class="faq-answer">
+            Pago único por Stripe. Tarjetas de crédito/débito. 100% seguro.
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <i class="fas fa-undo"></i> ¿Tienen reembolso?
+          </div>
+          <div class="faq-answer">
+            No, no aplicamos reembolso.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA GRANDE -->
+  <div class="container">
+    <section class="cta-large" id="contacto">
+      <h2>¿Listo para descubrir la verdad?</h2>
+      <p>Más de 50,000 personas ya lo usan. Únete ahora.</p>
+      <button class="btn btn-primary" id="comprar-cta">
+        <i class="fas fa-arrow-right"></i> Comprar ahora
+      </button>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <i class="fas fa-chart-line"></i> IG Analyzer
+          </div>
+          <p class="footer-description">La herramienta más completa para análisis de Instagram. Descubre quién no te sigue y haz crecer tu cuenta.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Producto</h4>
+          <ul>
+            <li><a href="#caracteristicas">Características</a></li>
+            <li><a href="#precios">Precios</a></li>
+            <li><a href="#como-funciona">Cómo funciona</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Recursos</h4>
+          <ul>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Guía de uso</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#">Soporte</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Términos de uso</a></li>
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="#">Aviso legal</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>© 2026 IG Analyzer. Todos los derechos reservados.</p>
+      </div>
     </div>
   </footer>
 
   <script>
-    document.getElementById('buyButton').addEventListener('click', async () => {
-      try {
-        const response = await fetch('https://api.igpro-analyzer.com/api/create-checkout', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        });
-        
-        const data = await response.json();
-        
+    // ============================================
+    // FUNCIONES DE COMPRA - IGUAL QUE EN LA LANDING ACTUAL
+    // ============================================
+    
+    // Función de compra unificada (exactamente igual que en la landing actual)
+    function comprar(plan = 'annual') {
+      console.log('Iniciando compra del plan:', plan);
+      
+      // Mostrar indicador de carga (opcional)
+      const originalText = event?.target?.innerText;
+      if (event?.target) {
+        event.target.disabled = true;
+        event.target.innerText = 'Procesando...';
+      }
+      
+      fetch('https://www.igpro-analyzer.com/api/create-checkout', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ plan: plan })
+      })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Error en la respuesta del servidor');
+        }
+        return res.json();
+      })
+      .then(data => {
         if (data.url) {
+          // Redirigir a Stripe Checkout
           window.location.href = data.url;
         } else {
-          alert('Error al crear la sesión de pago');
+          alert('Error al iniciar la compra. Intenta de nuevo.');
+          // Restaurar botón
+          if (event?.target) {
+            event.target.disabled = false;
+            event.target.innerText = originalText;
+          }
         }
-      } catch (error) {
-        alert('Error de conexión');
+      })
+      .catch(err => {
+        console.error('Error:', err);
+        alert('Error de conexión. Por favor, inténtalo más tarde.');
+        // Restaurar botón
+        if (event?.target) {
+          event.target.disabled = false;
+          event.target.innerText = originalText;
+        }
+      });
+    }
+    
+    // Asignar eventos cuando el DOM esté cargado
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // 1. BOTONES CON ID ESPECÍFICOS (Hero y CTA)
+      const heroBtn = document.getElementById('comprar-hero');
+      if (heroBtn) {
+        heroBtn.addEventListener('click', (e) => {
+          e.target.innerText = 'Procesando...';
+          e.target.disabled = true;
+          comprar('annual');
+        });
       }
+      
+      const ctaBtn = document.getElementById('comprar-cta');
+      if (ctaBtn) {
+        ctaBtn.addEventListener('click', (e) => {
+          e.target.innerText = 'Procesando...';
+          e.target.disabled = true;
+          comprar('annual');
+        });
+      }
+      
+      // 2. BOTONES CON CLASE 'comprar-btn' (los de las tarjetas de precios)
+      document.querySelectorAll('.comprar-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const plan = this.getAttribute('data-plan') || 'annual';
+          const originalText = this.innerText;
+          
+          this.disabled = true;
+          this.innerText = 'Procesando...';
+          
+          // Si el plan es 'demo', mostrar mensaje informativo
+          if (plan === 'demo') {
+            setTimeout(() => {
+              alert('El plan DEMO es gratuito. Para usar todas las funciones, elige el plan anual o lifetime.');
+              this.disabled = false;
+              this.innerText = originalText;
+            }, 100);
+            return;
+          }
+          
+          comprar(plan);
+        });
+      });
+      
+      // 3. BOTÓN VER DEMO
+      const verDemoBtn = document.getElementById('ver-demo');
+      if (verDemoBtn) {
+        verDemoBtn.addEventListener('click', () => {
+          document.querySelector('.hero-card').scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'center'
+          });
+        });
+      }
+      
+      // 4. SMOOTH SCROLL PARA TODOS LOS ENLACES INTERNOS
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const target = document.querySelector(targetId);
+          if (target) {
+            target.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+      
+      console.log('✅ Landing page lista con funciones de compra');
     });
   </script>
 </body>
