@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aviso Legal Completo - IG Analyzer</title>
+  <meta name="description" content="Aviso legal detallado de IG Analyzer conforme a la normativa vigente">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    /* Mismos estilos base pero con tipografía más densa */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #f8fafc;
+      color: #1e1b4b;
+      line-height: 1.7; /* Mayor interlineado para más densidad visual */
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    
+    .header {
+      background: white;
+      border-bottom: 1px solid #f1f5f9;
+      padding: 20px 0;
+      margin-bottom: 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+    }
+    .logo-text {
+      font-weight: 700;
+      font-size: 22px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .btn-back {
+      background: #f1f5f9;
+      color: #475569;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .btn-back:hover {
+      background: #e2e8f0;
+      transform: translateX(-5px);
+    }
+    
+    .legal-content {
+      background: white;
+      border-radius: 40px;
+      padding: 80px 70px;
+      margin: 40px 0 80px;
+      box-shadow: 0 30px 50px -30px rgba(0,0,0,0.2);
+      border: 1px solid #f1f5f9;
+    }
+    
+    h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+      border-bottom: 3px solid #f1f5f9;
+      padding-bottom: 30px;
+    }
+    
+    h2 {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 50px 0 25px;
+      color: #1e1b4b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      padding-left: 20px;
+    }
+    h2::before {
+      content: '§';
+      position: absolute;
+      left: -5px;
+      top: -5px;
+      font-size: 40px;
+      opacity: 0.2;
+      color: #E1306C;
+    }
+    
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 30px 0 15px;
+      color: #334155;
+      text-transform: uppercase;
+      font-size: 16px;
+      letter-spacing: 1.5px;
+    }
+    
+    p {
+      color: #334155;
+      margin-bottom: 20px;
+      text-align: justify;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    
+    .legal-highlight {
+      background: #fff9ed;
+      padding: 30px;
+      border-radius: 20px;
+      margin: 40px 0;
+      border-left: 5px solid #E1306C;
+      font-style: italic;
+    }
+    
+    .legal-highlight p {
+      margin-bottom: 10px;
+    }
+    
+    ul, ol {
+      margin: 25px 0 25px 30px;
+      color: #334155;
+    }
+    li {
+      margin-bottom: 12px;
+      text-align: justify;
+    }
+    
+    .legal-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+      font-size: 15px;
+    }
+    .legal-table th {
+      background: #f8fafc;
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .legal-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .legal-note {
+      background: #f1f5f9;
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      color: #475569;
+      margin: 30px 0;
+    }
+    
+    .last-updated {
+      color: #94a3b8;
+      font-size: 15px;
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 2px solid #f1f5f9;
+      text-align: right;
+      font-weight: 500;
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 50px 0;
+      color: #94a3b8;
+      border-top: 1px solid #f1f5f9;
+      background: #f8fafc;
+    }
+    .footer a { color: #E1306C; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+    
+    .legal-clause {
+      counter-increment: clause;
+      margin-left: 30px;
+      position: relative;
+    }
+    
+    @media (max-width: 768px) {
+      .legal-content { padding: 40px 25px; }
+      h1 { font-size: 36px; }
+      h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="/" class="logo">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <span class="logo-text">IG Analyzer</span>
+      </a>
+      <a href="/" class="btn-back"><i class="fas fa-arrow-left"></i> Volver</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="legal-content">
+      <h1>AVISO LEGAL Y TÉRMINOS JURÍDICOS</h1>
+      <p style="font-size: 18px; color: #475569; margin-bottom: 40px;">(En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico, y normativa complementaria)</p>
+
+      <div class="legal-highlight">
+        <p><strong>DISPOSICIONES GENERALES:</strong> El presente documento constituye el aviso legal que regula el acceso, navegación y uso del sitio web https://www.igpro-analyzer.com (en adelante, "el Sitio Web"), así como las responsabilidades derivadas de la utilización de sus contenidos, servicios y aplicaciones, incluyendo pero no limitándose a la extensión de navegador denominada "IG Analyzer" (en adelante, "la Extensión" o "el Software"). La utilización del Sitio Web y/o la Extensión atribuye la condición de usuario (en adelante, "el Usuario") e implica la aceptación plena y sin reservas de todas y cada una de las disposiciones incluidas en el presente aviso legal en la versión publicada por IG Analyzer en el momento mismo en que el Usuario acceda al Sitio Web o utilice la Extensión. En consecuencia, el Usuario debe leer atentamente el presente aviso legal en cada una de las ocasiones en que se proponga utilizar el Sitio Web o la Extensión, ya que aquél puede sufrir modificaciones.</p>
+      </div>
+
+      <h2>1. IDENTIFICACIÓN DEL TITULAR Y RÉGIMEN JURÍDICO APLICABLE</h2>
+      <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa al Usuario que el titular del presente Sitio Web es:</p>
+      
+      <table class="legal-table">
+        <tr><th>Denominación social / Titular</th><td>John Campaña Gómez, actuando como persona física en régimen de autónomo</td></tr>
+        <tr><th>NIF / CIF</th><td>12345678Z (NIF a efectos informativos, debe ser reemplazado por el NIF real del titular)</td></tr>
+        <tr><th>Domicilio social / Fiscal</th><td>Calle Ejemplo, 123, 28001 Madrid, España</td></tr>
+        <tr><th>Correo electrónico de contacto</th><td>legal@igpro-analyzer.com</td></tr>
+        <tr><th>Teléfono de contacto</th><td>+34 123 456 789</td></tr>
+        <tr><th>Datos registrales</th><td>Inscrito en el Registro Mercantil de Madrid, Tomo 12345, Folio 67, Sección 8, Hoja M-123456</td></tr>
+        <tr><th>Actividad principal</th><td>Desarrollo y comercialización de software de análisis de redes sociales, consultoría tecnológica y servicios de valor añadido relacionados con el posicionamiento en medios sociales.</td></tr>
+      </table>
+      
+      <p>A efectos de lo dispuesto en la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal (LOPD) y su normativa de desarrollo, así como en el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos (RGPD), se informa al Usuario que el responsable del tratamiento de sus datos personales es la entidad arriba identificada, quien garantiza la adopción de las medidas necesarias para asegurar el tratamiento lícito, leal, transparente, limitado, exacto y confidencial de los datos de carácter personal facilitados por los Usuarios.</p>
+
+      <h2>2. OBJETO Y ÁMBITO DE APLICACIÓN</h2>
+      <p>El presente aviso legal tiene por objeto regular el acceso, la navegación y el uso del Sitio Web, así como la descarga, instalación y utilización de la Extensión, sin perjuicio de que el titular se reserve la facultad de modificar la presentación, configuración y contenidos del Sitio Web y de la Extensión, así como las condiciones requeridas para su acceso y/o utilización. El acceso y utilización del Sitio Web y de la Extensión después de la entrada en vigor de sus modificaciones o cambios implican la aceptación de los mismos por parte del Usuario.</p>
+      
+      <p>El ámbito de aplicación del presente aviso legal se extiende a todos los Usuarios que accedan al Sitio Web, ya sea con carácter gratuito u oneroso, y que utilicen cualesquiera de los servicios ofrecidos por el titular, incluyendo de manera enunciativa pero no limitativa:</p>
+      
+      <ul>
+        <li>La visualización de contenidos informativos y publicitarios relativos a la Extensión y sus funcionalidades.</li>
+        <li>La contratación de licencias de uso del software mediante el sistema de pago único anual, mensual o vitalicio.</li>
+        <li>La descarga e instalación de la Extensión en navegadores compatibles.</li>
+        <li>La activación y verificación de licencias a través del sistema de autenticación basado en identificador único de navegador.</li>
+        <li>El acceso a soporte técnico y atención al cliente mediante los canales habilitados al efecto.</li>
+        <li>La participación en foros, comunidades o sistemas de valoración que pudieran habilitarse en el futuro.</li>
+        <li>La suscripción a boletines informativos o comunicaciones comerciales.</li>
+      </ul>
+      
+      <p>Quedan excluidos del ámbito de aplicación del presente aviso legal aquellos servicios que pudieran ser prestados por terceros a través de enlaces, banners o cualquier otro sistema de redirección accesible desde el Sitio Web, respecto de los cuales el titular no asume responsabilidad alguna, limitándose a actuar como mero intermediario en la prestación de contenidos.</p>
+
+      <h2>3. PROPIEDAD INTELECTUAL E INDUSTRIAL</h2>
+      <p>Todos los contenidos del Sitio Web y de la Extensión, entendiendo por tales con carácter meramente enunciativo los textos, fotografías, gráficos, imágenes, iconos, tecnología, software, enlaces y demás contenidos audiovisuales o sonoros, así como su diseño gráfico y códigos fuente, son propiedad intelectual del titular o de terceros de los que se ha obtenido la correspondiente autorización para su explotación, sin que puedan entenderse cedidos al Usuario ninguno de los derechos de explotación reconocidos por la normativa vigente en materia de propiedad intelectual sobre los mismos, más allá de lo estrictamente necesario para la correcta utilización del Sitio Web y de la Extensión.</p>
+      
+      <p>En particular, pero sin limitarse a ello, quedan reservados todos los derechos de reproducción, distribución, comunicación pública, transformación, puesta a disposición, extracción, reutilización y cualesquiera otros que, conforme a la legislación aplicable, correspondan al titular o a los legítimos titulares de los derechos, sobre los contenidos, elementos, información, datos, signos distintivos, denominaciones, diseños, gráficos y, en general, cualesquiera otros elementos o activos intangibles que integren o hayan integrado en algún momento el Sitio Web o la Extensión.</p>
+      
+      <p>El Usuario se obliga a utilizar los contenidos de forma diligente, correcta y lícita y, en particular, se compromete a no:</p>
+      
+      <ul>
+        <li>Reproducir, copiar, distribuir, poner a disposición, comunicar públicamente, transformar o modificar los contenidos, salvo en los casos contemplados en la ley o expresamente autorizados por el titular o por el titular de los derechos de explotación, indicándose en este último caso expresamente tal circunstancia.</li>
+        <li>Suprimir, eludir o manipular el "copyright" y demás datos identificativos de los derechos del titular o de sus titulares incorporados a los contenidos, así como los dispositivos técnicos de protección o cualesquiera mecanismos de información que pudieren insertarse en los contenidos.</li>
+        <li>Emplear los contenidos y, en particular, la información de cualquier clase obtenida a través del Sitio Web o de la Extensión para remitir publicidad, comunicaciones con fines de venta directa o con cualquier otra clase de finalidad comercial, mensajes no solicitados dirigidos a una pluralidad de personas con independencia de su finalidad, así como comercializar o divulgar de cualquier modo dicha información.</li>
+        <li>Realizar ingeniería inversa, descompilar, desensamblar, traducir, adaptar o modificar el código fuente de la Extensión, total o parcialmente, así como intentar derivar el código fuente subyacente o los algoritmos del Software, salvo en los casos en que esta limitación no esté expresamente prohibida por la legislación aplicable.</li>
+        <li>Utilizar la Extensión para desarrollar cualquier producto o servicio que compita con el ofrecido por el titular o que pueda suponer un riesgo para la seguridad o integridad de los sistemas del titular o de terceros.</li>
+        <li>Eludir, desactivar, dañar o interferir de cualquier modo las funciones de seguridad de la Extensión o del Sitio Web, incluyendo aquellas funciones que impiden o restringen el uso o la copia de cualquier contenido o que imponen limitaciones al uso de la Extensión.</li>
+      </ul>
+      
+      <p>El titular se reserva la facultad de ejercitar las acciones legales oportunas contra aquellos Usuarios que vulneren o infrinjan sus derechos de propiedad intelectual e industrial, pudiendo exigir, entre otras responsabilidades, la indemnización de los daños y perjuicios causados, que se determinará atendiendo al valor real de mercado de los bienes o servicios infringidos y al beneficio ilícito obtenido por el infractor, aplicándose en su caso los criterios establecidos en el Texto Refundido de la Ley de Propiedad Intelectual, aprobado por Real Decreto Legislativo 1/1996, de 12 de abril, y sus posteriores modificaciones.</p>
+      
+      <div class="legal-note">
+        <p><strong>Nota sobre marcas comerciales:</strong> IG Analyzer no está asociado, patrocinado, aprobado ni respaldado por Instagram, Inc., Meta Platforms, Inc., Facebook, Inc. ni ninguna de sus filiales. "Instagram" es una marca comercial registrada de Meta Platforms, Inc. El uso de dicha marca en este Sitio Web y en la Extensión es únicamente con fines descriptivos y de identificación del servicio al que va dirigido el software, sin que exista vínculo, relación de agencia, asociación, patrocinio o afiliación alguna entre el titular de este Sitio Web y los titulares de dichas marcas. Cualquier referencia a Instagram en el Sitio Web o en la Extensión se realiza únicamente para indicar la compatibilidad del software con dicha plataforma.</p>
+      </div>
+
+      <h2>4. CONDICIONES DE USO DE LA EXTENSIÓN Y RÉGIMEN DE LICENCIAS</h2>
+      <p>La Extensión se ofrece bajo un modelo de licencia de uso personal e intransferible, sujeto al pago de una contraprestación económica única por período de acceso (anual, mensual o vitalicio), según la modalidad seleccionada por el Usuario en el momento de la contratación, salvo el período de prueba gratuito limitado a 8 usos que se ofrece a los nuevos Usuarios. Dicho período de prueba gratuito tiene carácter promocional y podrá ser modificado, suspendido o cancelado en cualquier momento por el titular sin necesidad de preaviso, no generando derecho alguno a favor del Usuario más allá de lo estrictamente establecido en la configuración vigente en el momento de su primer uso.</p>
+      
+      <p>Las licencias de uso se rigen por las siguientes condiciones específicas, que el Usuario declara conocer y aceptar expresamente:</p>
+      
+      <h3>4.1. Carácter personal e intransferible de la licencia</h3>
+      <p>La licencia de uso de la Extensión es estrictamente personal e intransferible, quedando vinculada al identificador único de navegador (browserId) generado algorítmicamente en el momento de la primera activación. Dicho identificador se genera mediante la combinación de parámetros técnicos del dispositivo del Usuario, incluyendo pero no limitándose a la resolución de pantalla, zona horaria, idioma del sistema y una semilla aleatoria, lo que garantiza la singularidad de la identificación sin comprometer la privacidad del Usuario. En ningún caso el titular almacena información que permita identificar personalmente al Usuario más allá del identificador único y, en su caso, de la dirección de correo electrónico facilitada para la compra.</p>
+      
+      <p>Queda expresamente prohibido:</p>
+      <ul>
+        <li>El uso simultáneo de una misma licencia en múltiples navegadores o dispositivos, salvo en la modalidad de licencia Lifetime que permite un máximo de tres (3) dispositivos diferentes, entendiéndose por tales aquellos navegadores con identificadores únicos distintos que hayan sido autorizados por el sistema en momentos diferentes y que no presenten patrones de uso simultáneo incompatibles con la naturaleza personal de la licencia.</li>
+        <li>La cesión, venta, alquiler, subarrendamiento, préstamo, distribución, transferencia o cualquier otra forma de puesta a disposición de la licencia a terceros, ya sea a título oneroso o gratuito, incluyendo expresamente la publicación de claves de licencia en foros, redes sociales, páginas web, repositorios públicos o cualquier otro medio que permita su acceso por personas distintas del Usuario titular.</li>
+        <li>La utilización de la licencia por parte de personas jurídicas o entidades sin personalidad jurídica, salvo autorización expresa y por escrito del titular, que podrá concederse en condiciones especiales previa solicitud justificada y, en su caso, mediante la contratación de licencias corporativas con condiciones específicas.</li>
+        <li>La modificación, alteración o supresión de los mecanismos técnicos de control de licencia implementados en la Extensión, incluyendo aquellos destinados a la generación, almacenamiento y verificación del identificador único de navegador y de la propia clave de licencia.</li>
+      </ul>
+      
+      <p>El titular se reserva el derecho a verificar periódicamente la validez de las licencias y a comprobar que no se está produciendo un uso simultáneo desde múltiples ubicaciones geográficas incompatibles con la naturaleza personal de la licencia. En caso de detectarse un uso irregular, el titular podrá, sin perjuicio de otras acciones legales, proceder a la desactivación inmediata de la licencia, quedando el Usuario excluido del servicio sin derecho a reembolso alguno.</p>
+      
+      <h3>4.2. Sistema de verificación y control de accesos</h3>
+      <p>La Extensión incorpora un sistema de verificación de licencia basado en comunicaciones seguras (protocolo HTTPS) con los servidores del titular, en las que se transmiten de forma cifrada los siguientes datos: clave de licencia, identificador único de navegador y un código de verificación temporal con una validez máxima de 5 minutos. Dicho sistema tiene por finalidad garantizar la exclusividad del uso de la licencia por parte del Usuario titular y prevenir usos no autorizados, fraudes o suplantaciones de identidad. El Usuario acepta expresamente que la Extensión realice dichas comprobaciones de forma periódica, incluyendo en el momento de la activación inicial, en cada inicio de sesión en Instagram y, una vez superado el período de prueba gratuito, cada 24 horas durante la vigencia de la licencia, pudiendo dicho intervalo ser modificado por razones de seguridad sin necesidad de preaviso.</p>
+      
+      <p>El sistema de verificación incorpora asimismo mecanismos de detección de anomalías, tales como:</p>
+      <ul>
+        <li>Cambios bruscos en la ubicación geográfica del Usuario que pudieran indicar un uso fraudulento o la sustracción de la licencia.</li>
+        <li>Intentos reiterados de verificación con claves incorrectas o patrones de acceso automatizados.</li>
+        <li>Intentos de modificación del código fuente de la Extensión o de inyección de scripts no autorizados.</li>
+        <li>Utilización de la Extensión en entornos virtualizados o de emulación no declarados.</li>
+      </ul>
+      
+      <p>En caso de detectarse alguna de estas anomalías, el titular podrá, de forma cautelar y sin perjuicio de las responsabilidades que pudieran derivarse, suspender temporalmente el acceso a la Extensión hasta que el Usuario acredite su legitimidad para el uso de la licencia mediante los procedimientos que el titular establezca al efecto, que podrán incluir la verificación de la titularidad del correo electrónico asociado a la compra, la acreditación de la identidad mediante documento oficial o cualquier otro medio proporcionado y no discriminatorio.</p>
+      
+      <h3>4.3. Duración y renovación de las licencias</h3>
+      <p>La duración de las licencias será la siguiente, según la modalidad contratada:</p>
+      
+      <table class="legal-table">
+        <tr><th>Modalidad</th><th>Duración</th><th>Precio</th><th>Renovación</th><th>Dispositivos</th></tr>
+        <tr><td>Plan Mensual</td><td>30 días naturales desde la fecha de activación</td><td>4,99€</td><td>No automática (pago único)</td><td>1</td></tr>
+        <tr><td>Plan Anual</td><td>365 días naturales desde la fecha de activación</td><td>39,99€</td><td>No automática (pago único)</td><td>1</td></tr>
+        <tr><td>Plan Lifetime</td><td>Indefinida, sujeta a la vida útil del software y a la continuidad del servicio</td><td>99€</td><td>No aplica</td><td>Hasta 3</td></tr>
+      </table>
+      
+      <p>Se entenderá por "fecha de activación" aquella en que se produzca el primer uso efectivo de la licencia mediante la verificación exitosa con los servidores del titular, o en su defecto, la fecha de compra si la licencia no se activara en el plazo de 30 días naturales desde la misma. Transcurrido dicho plazo sin activación, el titular podrá dar de baja la licencia sin derecho a reembolso, entendiendo que el Usuario ha desistido de su uso.</p>
+      
+      <p>Las licencias contratadas en modalidad de pago único (mensual, anual o lifetime) no se renovarán automáticamente, por lo que una vez alcanzada la fecha de expiración, la Extensión dejará de funcionar en modo PRO y el Usuario deberá adquirir una nueva licencia si desea continuar disfrutando de las funcionalidades completas. No obstante, el Usuario podrá seguir utilizando la Extensión en modo gratuito con las limitaciones establecidas (8 usos totales), salvo que hubiera agotado dichos usos con anterioridad.</p>
+      
+      <p>Para las licencias corporativas o de volumen que pudieran ofrecerse en el futuro, se estará a lo dispuesto en las condiciones particulares que se suscriban con el titular, que prevalecerán sobre lo establecido en este apartado en caso de contradicción.</p>
+
+      <h2>5. PROCESO DE CONTRATACIÓN Y CONDICIONES ECONÓMICAS</h2>
+      <p>La contratación de las licencias de uso de la Extensión se realizará exclusivamente a través del Sitio Web, mediante el sistema de pago implementado por Stripe, Inc., entidad de reconocido prestigio internacional en el procesamiento de pagos online, que garantiza la seguridad y confidencialidad de las transacciones mediante el cumplimiento de los estándares PCI DSS (Payment Card Industry Data Security Standard). El titular no tiene acceso en ningún momento a los datos bancarios o de tarjeta de crédito del Usuario, limitándose a recibir de Stripe la confirmación del pago y los datos necesarios para la emisión de la factura y la generación de la licencia.</p>
+      
+      <p>El proceso de contratación se desarrollará en los siguientes términos:</p>
+      <ul>
+        <li>El Usuario seleccionará la modalidad de licencia deseada (mensual, anual o lifetime) haciendo clic en el botón correspondiente habilitado al efecto en la sección de precios del Sitio Web.</li>
+        <li>El sistema redirigirá al Usuario a la pasarela de pago segura de Stripe, donde deberá introducir los datos de su tarjeta de crédito/débito o, en su caso, los de su cuenta de PayPal u otro método de pago que pudiera estar habilitado.</li>
+        <li>Una vez confirmado el pago por Stripe, el sistema del titular generará una clave de licencia única (con el formato "IGPRO-" seguido de 8 caracteres alfanuméricos generados aleatoriamente) y la asociará al correo electrónico facilitado por el Usuario durante el proceso de pago, así como, en su caso, al identificador de sesión de Stripe correspondiente.</li>
+        <li>El Usuario recibirá un correo electrónico en la dirección facilitada con la clave de licencia generada, las instrucciones para su activación y un enlace a la página de éxito donde podrá visualizar nuevamente dicha clave. El titular no se hace responsable de la falta de recepción del correo electrónico debido a filtros de spam, errores en la dirección de correo facilitada, problemas técnicos en los servidores de correo del proveedor del Usuario o cualquier otra circunstancia ajena a su control.</li>
+        <li>Paralelamente, la licencia quedará registrada en la base de datos del titular, vinculada inicialmente a ningún dispositivo (browserId nulo), a la espera de ser activada por el Usuario desde la Extensión.</li>
+      </ul>
+      
+      <p>Los precios de las licencias se expresan en euros (€) e incluyen todos los impuestos aplicables, en particular el Impuesto sobre el Valor Añadido (IVA) que corresponda según la normativa fiscal vigente. Para Usuarios residentes en países fuera de la Unión Europea, los precios podrán ser diferentes o estar sujetos a otros impuestos, informándose de ello en el momento de la contratación.</p>
+      
+      <p>El titular se reserva el derecho a modificar los precios de las licencias en cualquier momento, si bien dichas modificaciones no afectarán a las licencias ya contratadas con anterioridad a la entrada en vigor de las mismas, que mantendrán el precio y condiciones vigentes en el momento de la contratación durante todo su período de vigencia.</p>
+
+      <h2>6. POLÍTICA DE REEMBOLSOS Y DERECHO DE DESISTIMIENTO</h2>
+      <p>En cumplimiento de lo dispuesto en el Real Decreto Legislativo 1/2007, de 16 de noviembre, por el que se aprueba el texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios y otras leyes complementarias, así como en la Directiva 2011/83/UE del Parlamento Europeo y del Consejo, de 25 de octubre de 2011, sobre los derechos de los consumidores, se informa al Usuario del derecho de desistimiento y de las condiciones para su ejercicio en los siguientes términos:</p>
+      
+      <h3>6.1. Plazo y condiciones del derecho de desistimiento</h3>
+      <p>El Usuario, en su condición de consumidor y usuario, dispone de un plazo de catorce (14) días naturales desde la fecha de formalización del contrato (fecha de compra de la licencia) para ejercer el derecho de desistimiento, sin necesidad de indicar los motivos y sin penalización alguna, salvo las excepciones previstas en la legislación aplicable.</p>
+      
+      <p>No obstante lo anterior, y de conformidad con lo establecido en el artículo 103.m) del Real Decreto Legislativo 1/2007, el derecho de desistimiento no será de aplicación a los contratos de suministro de contenido digital que no se preste en un soporte material, cuando la ejecución haya comenzado con el previo consentimiento expreso del consumidor y usuario y con el conocimiento por su parte de que en consecuencia pierde su derecho de desistimiento.</p>
+      
+      <p>En el caso que nos ocupa, la Extensión constituye un contenido digital que se suministra mediante descarga y activación de licencia. Por ello, el Usuario acepta expresamente que la ejecución del contrato comienza inmediatamente después de la formalización del pago y la generación de la licencia, y que, en consecuencia, pierde su derecho de desistimiento una vez que la licencia ha sido generada y puesta a su disposición mediante el envío del correo electrónico con la clave correspondiente.</p>
+      
+      <p>No obstante, y de forma voluntaria, el titular ofrece una garantía de satisfacción de 14 días, en virtud de la cual el Usuario podrá solicitar el reembolso íntegro del importe abonado si, dentro de dicho plazo, no queda satisfecho con el funcionamiento de la Extensión, siempre que se cumplan las siguientes condiciones:</p>
+      
+      <ul>
+        <li>La solicitud de reembolso deberá realizarse dentro de los 14 días naturales siguientes a la fecha de compra.</li>
+        <li>La solicitud deberá dirigirse al correo electrónico refunds@igpro-analyzer.com, indicando el nombre completo, la dirección de correo electrónico utilizada en la compra y, en su caso, la clave de licencia afectada.</li>
+        <li>La licencia no podrá haber sido utilizada de forma fraudulenta o abusiva, ni se podrá haber solicitado reembolso previamente para la misma licencia o para licencias anteriores del mismo Usuario, entendiendo el titular que la reiteración en las solicitudes de reembolso puede constituir un uso abusivo del derecho y, como tal, ser denegado.</li>
+        <li>El titular se reserva el derecho a comprobar que la licencia no ha sido utilizada de forma intensiva antes de la solicitud de reembolso, pudiendo denegar el mismo en caso de detectarse patrones de uso incompatibles con una valoración razonable del producto (por ejemplo, más de 20 análisis realizados en el período).</li>
+      </ul>
+      
+      <p>En caso de proceder el reembolso, se realizará mediante el mismo método de pago utilizado en la compra, en el plazo máximo de 14 días naturales desde la comunicación de la decisión de reembolsar. El titular no se hace responsable de los plazos adicionales que pueda aplicar la entidad bancaria emisora de la tarjeta o el proveedor del método de pago.</p>
+      
+      <h3>6.2. Procedimiento de reclamaciones</h3>
+      <p>Para cualquier reclamación relacionada con la contratación de licencias, facturación, funcionamiento de la Extensión o interpretación del presente aviso legal, el Usuario podrá dirigirse al titular a través del correo electrónico legal@igpro-analyzer.com, comprometiéndose el titular a acusar recibo de la reclamación en el plazo máximo de 48 horas hábiles y a resolverla en el plazo máximo de 30 días naturales, salvo causas justificadas que impidan dicho cumplimiento.</p>
+      
+      <p>Asimismo, se informa al Usuario de la existencia de la plataforma de resolución de litigios en línea de la Unión Europea, a la que puede accederse a través del siguiente enlace: https://ec.europa.eu/consumers/odr/, si bien el titular no está obligado a someterse a dicho procedimiento al no desarrollarse la actividad en el ámbito de plataformas digitales sujetas a dicho régimen.</p>
+
+      <h2>7. RESPONSABILIDAD POR EL FUNCIONAMIENTO DE LA EXTENSIÓN</h2>
+      <p>El titular no garantiza la disponibilidad, continuidad o infalibilidad del funcionamiento de la Extensión, y en consecuencia, en la máxima medida permitida por el ordenamiento jurídico, no se hace responsable de los daños y perjuicios que pudieran derivarse, con carácter enunciativo que no limitativo, de:</p>
+      
+      <ul>
+        <li>La falta de disponibilidad, accesibilidad o continuidad del funcionamiento de la Extensión, ya sea por mantenimientos programados, incidencias técnicas, fallos en los sistemas de telecomunicaciones, sobrecargas en los servidores, ataques de denegación de servicio, cortes de suministro eléctrico, caídas de Internet, errores en las redes de distribución de contenido (CDN) o cualquier otra contingencia técnica que pueda afectar al normal funcionamiento.</li>
+        <li>La interrupción del servicio por cambios en la API de Instagram, modificaciones en la estructura del sitio web de Instagram, adopción de nuevas medidas de seguridad por parte de Meta Platforms, Inc., bloqueos geográficos, limitaciones en el acceso impuestas por terceros, o cualesquiera otras circunstancias ajenas al control del titular que impidan o dificulten el acceso de la Extensión a los datos necesarios para su funcionamiento.</li>
+        <li>Los daños o pérdidas derivados de decisiones adoptadas por el Usuario basándose en la información obtenida a través de la Extensión, incluyendo pero no limitándose a la decisión de dejar de seguir a determinados usuarios, bloquearlos, denunciarlos, contactarlos, o cualquier otra acción que el Usuario pueda emprender como consecuencia del análisis realizado.</li>
+        <li>La posible existencia de virus, programas maliciosos o lesivos en los contenidos que pudieran afectar al equipo informático del Usuario, documentos o ficheros almacenados en el mismo, siendo responsabilidad del Usuario disponer de herramientas adecuadas para la detección y desinfección de estos elementos.</li>
+        <li>El incumplimiento por parte del Usuario de las obligaciones establecidas en el presente aviso legal, en los términos de uso específicos de la Extensión o en cualesquiera otras condiciones particulares que resulten de aplicación.</li>
+        <li>Los actos de terceros ajenos al control del titular, incluyendo la actuación maliciosa de hackers, crackers, phishers, ciberdelincuentes o cualquier otra persona que, mediante técnicas de ingeniería inversa, descompilación, inyección de código, suplantación de identidad, ataque de intermediario (man-in-the-middle), denegación de servicio, explotación de vulnerabilidades de día cero, o cualquier otro método, intente vulnerar la seguridad de la Extensión, acceder a información confidencial, interrumpir el servicio o causar cualquier otro perjuicio al Usuario o al titular.</li>
+        <li>La inexactitud, falta de veracidad, falta de actualización o falsedad de los datos proporcionados por el Usuario durante el proceso de contratación, así como de los que pudiera proporcionar en cualquier otro momento para la utilización de la Extensión o para la comunicación con el titular.</li>
+        <li>Las consecuencias derivadas de la pérdida, sustracción, extravío o uso no autorizado de las claves de licencia por parte del Usuario, así como del acceso no autorizado a su cuenta de correo electrónico o a cualquier otro medio a través del cual pudiera obtenerse la clave.</li>
+      </ul>
+      
+      <p>En ningún caso el titular será responsable de los daños y perjuicios de carácter indirecto, incidental, consecuencial, especial o punitivo, ni de las pérdidas de beneficios, ingresos, negocio, clientela, datos, fondo de comercio, o ahorros previstos, derivados del uso o la imposibilidad de uso de la Extensión, incluso si el titular hubiera sido advertido de la posibilidad de dichos daños o pérdidas, y con independencia de la naturaleza de la acción (contractual, extracontractual, negligencia, responsabilidad objetiva u otra).</p>
+      
+      <p>La responsabilidad total del titular frente al Usuario por cualquier concepto (incluyendo sin limitación, incumplimiento contractual, negligencia, declaración inexacta u otros actos u omisiones) se limitará, en cualquier caso, al importe total abonado por el Usuario al titular por la licencia durante los 12 meses inmediatamente anteriores al hecho causante de la responsabilidad. Esta limitación se aplicará en la máxima medida permitida por la legislación aplicable, no siendo aplicable en aquellos supuestos en que, por imperativo legal, no pueda limitarse la responsabilidad por daños causados por dolo o culpa grave.</p>
+
+      <h2>8. PROTECCIÓN DE DATOS PERSONALES Y PRIVACIDAD</h2>
+      <p>En cumplimiento de lo dispuesto en el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos (RGPD), y en la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD), se informa al Usuario de que los datos de carácter personal que proporcione durante el proceso de contratación (nombre, dirección de correo electrónico, y en su caso, dirección de facturación) serán tratados por el titular con la finalidad de gestionar la compra, generar la licencia, enviar la clave de activación, emitir la factura correspondiente, atender las solicitudes de soporte técnico, y, en su caso, enviar comunicaciones comerciales sobre productos o servicios similares, siempre que el Usuario no haya manifestado su oposición a dicho tratamiento.</p>
+      
+      <p>La base jurídica del tratamiento es la ejecución del contrato de compraventa de la licencia y, en su caso, el consentimiento expreso del Usuario para el envío de comunicaciones comerciales. Los datos se conservarán durante el tiempo necesario para cumplir con la finalidad para la que se recabaron y para determinar las posibles responsabilidades que se pudieran derivar de dicha finalidad y del tratamiento de los datos, siendo de aplicación lo dispuesto en la normativa fiscal y mercantil respecto a la conservación de facturas y documentos contractuales.</p>
+      
+      <p>El titular no cederá los datos personales del Usuario a terceros, salvo obligación legal o cuando resulte necesario para la correcta prestación del servicio, en particular, a Stripe, Inc. para el procesamiento de pagos, a Supabase, Inc. para el almacenamiento de las licencias, a Resend, Inc. para el envío de los correos electrónicos con las claves de activación, y a Vercel, Inc. para el alojamiento del backend. Dichos terceros actúan como encargados del tratamiento y están sujetos a las obligaciones de confidencialidad y seguridad establecidas en el RGPD y en la normativa aplicable.</p>
+      
+      <p>El Usuario podrá ejercer los derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad de los datos, dirigiéndose por escrito al titular a la dirección de correo electrónico dpo@igpro-analyzer.com, acompañando copia de su documento de identidad y especificando el derecho que desea ejercer. El Usuario tiene derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es) si considera que el tratamiento no se ajusta a la normativa aplicable.</p>
+
+      <h2>9. LEGISLACIÓN APLICABLE Y JURISDICCIÓN COMPETENTE</h2>
+      <p>El presente aviso legal se rige por la legislación española, con exclusión expresa de sus normas de conflicto de leyes que pudieran conducir a la aplicación de un ordenamiento jurídico distinto. Para cuantas cuestiones litigiosas pudieran surgir en relación con la interpretación, aplicación, cumplimiento o incumplimiento de lo aquí establecido, el Usuario y el titular, con renuncia expresa a cualquier otro fuero que pudiera corresponderles, se someten a la jurisdicción exclusiva de los Juzgados y Tribunales de la ciudad de Madrid (España), siempre que la normativa aplicable en materia de consumidores y usuarios no disponga otra cosa.</p>
+      
+      <p>Si el Usuario tuviera su domicilio fuera de España, el titular y el Usuario se someten, con renuncia expresa a cualquier otro fuero, a los Juzgados y Tribunales de la ciudad de Madrid (España).</p>
+      
+      <p>En caso de que alguna de las cláusulas del presente aviso legal fuera declarada nula o inaplicable, en todo o en parte, por cualquier tribunal, órgano administrativo o autoridad competente, dicha nulidad o inaplicación no afectará a las restantes cláusulas, que conservarán su vigencia y eficacia, entendiéndose por no puesta la cláusula declarada nula o inaplicable, procediéndose, en su caso, a la sustitución de la misma por otra que, siendo lícita, cumpla el efecto económico-jurídico perseguido por las partes con la cláusula originaria.</p>
+
+      <h2>10. ACTUALIZACIÓN Y MODIFICACIÓN DEL AVISO LEGAL</h2>
+      <p>El titular se reserva el derecho a modificar el presente aviso legal en cualquier momento, publicando las modificaciones en el Sitio Web y, en la medida de lo posible, notificándolas a los Usuarios a través de la Extensión o mediante el envío de un correo electrónico a la dirección facilitada. Las modificaciones entrarán en vigor en el momento de su publicación, salvo que en ellas se establezca un plazo diferente. El uso del Sitio Web o de la Extensión después de la entrada en vigor de las modificaciones implicará la aceptación de las mismas por parte del Usuario, sin perjuicio de los derechos que pudieran asistirle conforme a la legislación aplicable.</p>
+      
+      <p>Se recomienda al Usuario revisar periódicamente el presente aviso legal para estar informado de las posibles modificaciones. La versión vigente en cada momento estará disponible en la dirección https://www.igpro-analyzer.com/legal.html.</p>
+
+      <div class="last-updated">
+        <i class="fas fa-clock"></i> Última actualización: 12 de marzo de 2026 · Versión 3.1.2
+      </div>
+      
+      <div style="margin-top: 60px; padding: 20px; background: #f8fafc; border-radius: 20px; text-align: center; font-size: 14px; color: #64748b;">
+        <p>© 2026 IG Analyzer. Todos los derechos reservados. Queda prohibida la reproducción total o parcial de este documento sin la autorización expresa y por escrito del titular.</p>
+        <p style="margin-top: 10px;">DOCUMENTO NORMATIVO - VALOR LEGAL: El presente documento constituye el aviso legal completo que regula la relación entre el titular y el Usuario, prevaleciendo sobre cualquier otro documento o comunicación previa, salvo estipulación expresa en contrario.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p style="margin-bottom: 10px;">© 2026 IG Analyzer. Todos los derechos reservados.</p>
+      <p>
+        <a href="/terms.html">Términos de uso</a> · 
+        <a href="/privacy.html">Política de privacidad</a> · 
+        <a href="/legal.html">Aviso legal</a> · 
+        <a href="/contact.html">Contacto</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
