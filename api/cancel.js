@@ -87,8 +87,8 @@ module.exports = async (req, res) => {
           💡 ¿Has tenido algún problema? <a href="mailto:soporte@tudominio.com" style="color: #991b1b;">Contáctanos</a>
         </div>
 
-        <a href="https://tusitio.com" class="btn">Volver al inicio</a>
-        <a href="https://tusitio.com/precios" class="btn btn-secondary">Ver planes</a>
+        <a href="https://www.igpro-analyzer.com/" class="btn">Volver al inicio</a>
+        <a href="https://www.igpro-analyzer.com/" class="btn btn-secondary">Ver planes</a>
       </div>
     </body>
     </html>
