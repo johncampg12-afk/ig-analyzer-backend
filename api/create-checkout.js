@@ -39,52 +39,16 @@ module.exports = async (req, res) => {
   }
 
   try {
-    // Obtener el plan del body de la petición (por defecto: annual)
-    const { plan = 'annual' } = req.body;
-    
-    // ============================================
-    // MAPEO DE PLANES A PRICE IDS (PRODUCCIÓN)
-    // ============================================
-    const priceIds = {
-      // Plan Anual - 29,99€
-      annual: 'price_1T4Lc8Rv1AFDOjredmBAxddO', // ← TU PRICE ID ACTUAL (anual)
-      
-      // Plan Lifetime - 99,99€ (CUANDO LO CREES EN STRIPE)
-      lifetime: 'price_1TAdYCRv1AFDOjreEcVXtJn1'    // ← REEMPLAZA CUANDO TENGAS EL ID
-    };
-    
-    // Verificar si el plan existe
-    const selectedPriceId = priceIds[plan];
-    if (!selectedPriceId) {
-      return res.status(400).json({ error: 'Plan no válido' });
-    }
-    
-    // ============================================
-    // CONFIGURAR METADATOS SEGÚN EL PLAN
-    // ============================================
-    const metadata = {
-      plan: plan,
-      type: plan === 'lifetime' ? 'lifetime_license' : 'annual_license',
-    };
-    
-    // Calcular fecha de expiración
-    if (plan === 'annual') {
-      metadata.expires_at = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString();
-    } else if (plan === 'lifetime') {
-      metadata.expires_at = null; // Lifetime no expira
-    }
+    const PRICE_ID = 'price_1T4Lc8Rv1AFDOjredmBAxddO'; // ← TU PRICE ID
 
-    // ============================================
-    // CREAR SESIÓN DE CHECKOUT
-    // ============================================
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
-      line_items: [{ 
-        price: selectedPriceId, 
-        quantity: 1 
-      }],
-      metadata: metadata,
+      line_items: [{ price: PRICE_ID, quantity: 1 }],
+      metadata: {
+        type: 'annual_license',
+        expires_at: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
+      },
       success_url: 'https://igpro-analyzer.com/api/success?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: 'https://igpro-analyzer.com/api/cancel',
     });
