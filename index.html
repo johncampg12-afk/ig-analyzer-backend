@@ -1468,18 +1468,20 @@
 
   <script>
     // ============================================
-    // FUNCIONES DE COMPRA - IGUAL QUE EN LA LANDING ACTUAL
+    // FUNCIONES DE COMPRA
     // ============================================
     
-    // Función de compra unificada (exactamente igual que en la landing actual)
+    // Función de compra unificada
     function comprar(plan = 'annual') {
       console.log('Iniciando compra del plan:', plan);
       
-      // Mostrar indicador de carga (opcional)
-      const originalText = event?.target?.innerText;
-      if (event?.target) {
-        event.target.disabled = true;
-        event.target.innerText = 'Procesando...';
+      // Guardar referencia al botón que disparó el evento
+      const button = event?.target;
+      const originalText = button?.innerText;
+      
+      if (button) {
+        button.disabled = true;
+        button.innerText = 'Procesando...';
       }
       
       fetch('https://www.igpro-analyzer.com/api/create-checkout', {
@@ -1501,20 +1503,18 @@
           window.location.href = data.url;
         } else {
           alert('Error al iniciar la compra. Intenta de nuevo.');
-          // Restaurar botón
-          if (event?.target) {
-            event.target.disabled = false;
-            event.target.innerText = originalText;
+          if (button) {
+            button.disabled = false;
+            button.innerText = originalText;
           }
         }
       })
       .catch(err => {
         console.error('Error:', err);
         alert('Error de conexión. Por favor, inténtalo más tarde.');
-        // Restaurar botón
-        if (event?.target) {
-          event.target.disabled = false;
-          event.target.innerText = originalText;
+        if (button) {
+          button.disabled = false;
+          button.innerText = originalText;
         }
       });
     }
@@ -1560,6 +1560,7 @@
             return;
           }
           
+          // ✅ AHORA EL PLAN LIFETIME TAMBIÉN FUNCIONA
           comprar(plan);
         });
       });
@@ -1592,7 +1593,7 @@
         });
       });
       
-      console.log('✅ Landing page lista con funciones de compra');
+      console.log('✅ Landing page lista con funciones de compra (Annual y Lifetime)');
     });
   </script>
 </body>
