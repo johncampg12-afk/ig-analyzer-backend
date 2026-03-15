@@ -1053,8 +1053,8 @@
             <button class="btn btn-primary" id="comprar-hero">
               <i class="fas fa-arrow-right"></i> Comprar ahora
             </button>
-            <button class="btn btn-outline" id="ver-demo">
-              <i class="fas fa-play"></i> Ver demo
+            <button class="btn btn-outline" id="dercargar-extension">
+              <i class="fas fa-download"></i> Descarga la Exyensión
             </button>
           </div>
           
@@ -1578,14 +1578,11 @@
         });
       });
       
-      // 3. BOTÓN VER DEMO
-      const verDemoBtn = document.getElementById('ver-demo');
-      if (verDemoBtn) {
-        verDemoBtn.addEventListener('click', () => {
-          document.querySelector('.hero-card').scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'center'
-          });
+      // 3. BOTÓN DE DESCARGA DE EXTENSIÓN
+      const descargarBtn = document.getElementById('descargar-extension');
+      if (descargarBtn) {
+        descargarBtn.addEventListener('click', () => {
+          window.open('https://chromewebstore.google.com/detail/cbllcgfnngbkcbkaemcpmllockmmdfkj?utm_source=item-share-cb', '_blank');
         });
       }
       
