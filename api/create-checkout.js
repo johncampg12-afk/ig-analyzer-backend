@@ -45,7 +45,7 @@ module.exports = async (req, res) => {
     // MAPEO DE PLANES A PRICE IDS
     // ============================================
     const priceIds = {
-      annual: 'price_1TAcMoRvtYANAeOoqAiBT6ZM', // ← TU PRICE ID ACTUAL (29,99€)
+      annual: 'price_1TBwqvRvtYANAeOoD8R5bS09', // ← TU PRICE ID ACTUAL (29,99€)
       lifetime: 'price_1TAcNrRvtYANAeOo2tXunc44'    // ← REEMPLAZA CON EL ID DE LIFETIME
     };
     
