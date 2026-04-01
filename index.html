@@ -1220,24 +1220,25 @@
       </div>
       
       <div class="pricing-grid">
-        <!-- Plan DEMO -->
+        <!-- Plan Pase Diario -->
         <div class="pricing-card">
           <div class="pricing-icon">
-            <i class="fas fa-flask"></i>
+            <i class="fas fa-calendar-day"></i>
           </div>
-          <h3>Modo DEMO</h3>
-          <div class="price">GRATIS <span></span></div>
-          <div class="price-description">Para probar sin compromiso</div>
+          <h3>Pase Diario</h3>
+          <div class="price">1,75€ <span></span></div>
+          <div class="price-description">Perfecto para probar</div>
           
           <ul class="pricing-features">
-            <li><i class="fas fa-check-circle"></i> 8 Análisis gratuitos</li>
-            <li><i class="fas fa-check-circle"></i> Lista limitada a 3 personas</li>
-            <li><i class="fas fa-check-circle disabled"></i> Lista completa</li>
-            <li><i class="fas fa-check-circle disabled"></i> 1 dispositivo</li>
+            <li><i class="fas fa-check-circle"></i> Acceso PRO por 24h</li>
+            <li><i class="fas fa-check-circle"></i> Análisis ilimitados</li>
+            <li><i class="fas fa-check-circle"></i> Lista completa</li>
+            <li><i class="fas fa-check-circle"></i> Sin compromiso</li>
+            <li><i class="fas fa-check-circle"></i> 1 dispositivo</li>
           </ul>
           
-          <button class="btn btn-outline comprar-btn" data-plan="demo">
-            Tu Plan Actual
+          <button class="btn btn-outline comprar-btn" data-plan="daily">
+            Probar por 1,75€
           </button>
         </div>
         
@@ -1563,17 +1564,7 @@
           this.disabled = true;
           this.innerText = 'Procesando...';
           
-          // Si el plan es 'demo', mostrar mensaje informativo
-          if (plan === 'demo') {
-            setTimeout(() => {
-              alert('El plan DEMO es gratuito. Para usar todas las funciones, elige el plan anual o lifetime.');
-              this.disabled = false;
-              this.innerText = originalText;
-            }, 100);
-            return;
-          }
-          
-          // ✅ AHORA EL PLAN LIFETIME TAMBIÉN FUNCIONA
+          // ✅ AHORA EL PLAN DAILY TAMBIÉN FUNCIONA
           comprar(plan);
         });
       });
@@ -1603,7 +1594,7 @@
         });
       });
       
-      console.log('✅ Landing page lista con funciones de compra (Annual y Lifetime)');
+      console.log('✅ Landing page lista con planes: Daily (1,75€), Annual (15,99€) y Lifetime (99€)');
     });
   </script>
 </body>
