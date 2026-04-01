@@ -33,8 +33,19 @@ function formatDate(date) {
   });
 }
 
+function formatExpirationTime(date) {
+  if (!date) return 'Nunca expira (Lifetime)';
+  const now = new Date();
+  const diffHours = Math.ceil((new Date(date) - now) / (1000 * 60 * 60));
+  if (diffHours < 24) {
+    return `Expira en ${diffHours} horas`;
+  }
+  return `Válida hasta: ${formatDate(date)}`;
+}
+
 function getPlanDisplayName(plan) {
   const plans = {
+    daily: 'Pase Diario (24 horas)',
     annual: 'Licencia Anual',
     lifetime: 'Licencia Lifetime (Pago Único)'
   };
@@ -93,15 +104,26 @@ module.exports = async (req, res) => {
     const licenseKey = generateLicenseKey();
     
     // ============================================
-    // CONFIGURACIÓN SEGÚN EL PLAN
+    // CONFIGURACIÓN DE EXPIRACIÓN SEGÚN EL PLAN
     // ============================================
     let expiresAt;
+    let maxDevices = 1;
+    let planDisplayName = getPlanDisplayName(plan);
     
     if (plan === 'lifetime') {
       expiresAt = null; // No expira
+      maxDevices = 2;
+      planDisplayName = 'Lifetime (Pago Único)';
+    } else if (plan === 'daily') {
+      expiresAt = new Date();
+      expiresAt.setHours(expiresAt.getHours() + 24); // +24 horas desde ahora
+      maxDevices = 1;
+      planDisplayName = 'Pase Diario (24h)';
     } else {
       expiresAt = new Date();
       expiresAt.setFullYear(expiresAt.getFullYear() + 1); // +1 año
+      maxDevices = 1;
+      planDisplayName = 'Licencia Anual';
     }
 
     // 📦 INSERTAR (SOLO CAMPOS BÁSICOS + PLAN EN METADATA)
@@ -113,9 +135,11 @@ module.exports = async (req, res) => {
       stripe_customer_id: session.customer,
       amount_total: session.amount_total,
       expires_at: expiresAt ? expiresAt.toISOString() : null,
+      max_devices: maxDevices,
+      plan: plan,  // Guardamos el plan directamente
       metadata: { 
         ...session.metadata,
-        plan: plan  // Guardamos el plan en metadata
+        plan: plan
       }
     });
 
@@ -123,17 +147,20 @@ module.exports = async (req, res) => {
       console.error('❌ Error Supabase:', dbError);
     } else {
       console.log('✅ Licencia guardada:', licenseKey);
-      console.log(`📱 Plan: ${plan}`);
+      console.log(`📱 Plan: ${planDisplayName}`);
+      console.log(`⏰ Expira: ${expiresAt ? expiresAt.toISOString() : 'Nunca'}`);
     }
 
     // 2️⃣ ENVIAR EMAIL CON INFORMACIÓN DEL PLAN
     try {
       console.log('📧 Preparando envío de email a:', email);
 
-      const planDisplayName = getPlanDisplayName(plan);
-      const expirationText = plan === 'lifetime' 
-        ? 'Nunca expira (Lifetime)' 
-        : `Válida hasta: ${formatDate(expiresAt)}`;
+      const expirationText = formatExpirationTime(expiresAt);
+      
+      // Añadir mensaje especial para pase diario
+      const specialMessage = plan === 'daily' 
+        ? '<p style="background: #fef3c7; color: #92400e; padding: 12px; border-radius: 8px; text-align: center;">⏰ <strong>Importante:</strong> Este pase expira en 24 horas. Aprovecha al máximo tu día de análisis ilimitados.</p>'
+        : '';
 
       const emailHtml = `
         <!DOCTYPE html>
@@ -165,11 +192,14 @@ module.exports = async (req, res) => {
                 </p>
               </div>
               
+              ${specialMessage}
+              
               <!-- Caja de licencia -->
               <div style="background: #f3f4f6; border-radius: 12px; padding: 25px; margin: 30px 0; text-align: center; border: 2px dashed #6366f1;">
                 <p style="color: #6b7280; margin: 0 0 10px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Tu clave de licencia</p>
                 <div style="font-family: 'Courier New', monospace; font-size: 28px; font-weight: bold; color: #4f46e5; letter-spacing: 2px; word-break: break-all;">${licenseKey}</div>
                 <p style="color: #6b7280; margin: 15px 0 0; font-size: 14px;">${expirationText}</p>
+                ${plan === 'lifetime' ? '<p style="color: #10b981; margin: 10px 0 0; font-size: 13px;">✨ Puedes usar esta licencia en hasta 2 dispositivos ✨</p>' : ''}
               </div>
               
               <!-- Instrucciones -->
@@ -197,7 +227,7 @@ module.exports = async (req, res) => {
       const { data, error } = await resend.emails.send({
         from: 'IG Analyzer PRO <no-reply@igpro-analyzer.com>',
         to: email,
-        subject: `🎉 Tu licencia IG Analyzer PRO (${planDisplayName}) está lista`,
+        subject: `🎉 Tu ${planDisplayName} de IG Analyzer PRO está lista`,
         html: emailHtml,
       });
 

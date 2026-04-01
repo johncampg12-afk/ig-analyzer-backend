@@ -45,8 +45,9 @@ module.exports = async (req, res) => {
     // MAPEO DE PLANES A PRICE IDS
     // ============================================
     const priceIds = {
-      annual: 'price_1TBwqvRvtYANAeOoD8R5bS09', // ← TU PRICE ID ACTUAL (29,99€)
-      lifetime: 'price_1TAcNrRvtYANAeOo2tXunc44'    // ← REEMPLAZA CON EL ID DE LIFETIME
+      daily: 'price_1THRazRvtYANAeOo54eujYvJ',   // ← REEMPLAZA CON TU ID DEL PASE DIARIO
+      annual: 'price_1TBwqvRvtYANAeOoD8R5bS09',  // ← TU PRICE ID ACTUAL (29,99€)
+      lifetime: 'price_1TAcNrRvtYANAeOo2tXunc44'  // ← TU PRICE ID LIFETIME
     };
     
     const selectedPriceId = priceIds[plan];
@@ -60,13 +61,17 @@ module.exports = async (req, res) => {
     // ============================================
     const metadata = {
       plan: plan,
-      type: plan === 'lifetime' ? 'lifetime_license' : 'annual_license'
+      type: plan === 'lifetime' ? 'lifetime_license' : 
+             plan === 'daily' ? 'daily_license' : 'annual_license'
     };
     
-    // Solo añadir expires_at si es anual
+    // Configurar expiración según el plan
     if (plan === 'annual') {
       metadata.expires_at = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString();
+    } else if (plan === 'daily') {
+      metadata.expires_at = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
     }
+    // Lifetime no tiene expires_at
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
