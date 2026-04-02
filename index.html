@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
   <style>
+    /* [TODO EL CSS EXISTENTE SE MANTIENE IGUAL] */
     * {
       margin: 0;
       padding: 0;
@@ -149,9 +150,6 @@
       transition: all 0.3s;
       padding: 8px 0;
       position: relative;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
     
     .nav-links a:hover {
@@ -1005,16 +1003,11 @@
       }
     }
     
-    /* Selector de idioma y botones del header */
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    
+    /* Selector de idioma */
     .lang-selector {
       display: flex;
       gap: 5px;
+      margin-left: 15px;
     }
     
     .lang-btn {
@@ -1050,14 +1043,13 @@
       </div>
       
       <nav class="nav-links">
-        <a href="#caracteristicas"><i class="fas fa-crown"></i> <span data-i18n="nav_features">Características</span></a>
-        <a href="#como-funciona"><i class="fas fa-compass"></i> <span data-i18n="nav_howitworks">Cómo funciona</span></a>
-        <a href="#precios"><i class="fas fa-tag"></i> <span data-i18n="nav_pricing">Precios</span></a>
-        <a href="#faq"><i class="fas fa-circle-question"></i> <span data-i18n="nav_faq">FAQ</span></a>
+        <a href="#caracteristicas" data-i18n="nav_features">Características</a>
+        <a href="#como-funciona" data-i18n="nav_howitworks">Cómo funciona</a>
+        <a href="#precios" data-i18n="nav_pricing">Precios</a>
+        <a href="#faq" data-i18n="nav_faq">FAQ</a>
       </nav>
       
-      <div class="header-actions">
-        <div class="lang-selector"></div>
+      <div style="display: flex; align-items: center;">
         <button class="btn btn-outline" onclick="window.open('https://www.instagram.com', '_blank')">
           <i class="fab fa-instagram"></i> <span data-i18n="btn_open_instagram">Abrir Instagram</span>
         </button>
@@ -1468,20 +1460,19 @@
           </div>
           <p class="footer-description" data-i18n="footer_description">La herramienta más completa para análisis de Instagram. Descubre quién no te sigue y haz crecer tu cuenta.</p>
           <div class="social-links">
-            <a href="https://x.com/igproanalyzer" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com/igproanalyzer/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@igproanalyzer" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.facebook.com/share/188iLdDCy7/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/igproanalyzer"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/igproanalyzer/"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@igproanalyzer"><i class="fab fa-tiktok"></i></a>
           </div>
         </div>
         
         <div class="footer-links">
           <h4 data-i18n="footer_product">Producto</h4>
           <ul>
-            <li><a href="#caracteristicas"><i class="fas fa-crown"></i> <span data-i18n="nav_features">Características</span></a></li>
-            <li><a href="#precios"><i class="fas fa-tag"></i> <span data-i18n="nav_pricing">Precios</span></a></li>
-            <li><a href="#como-funciona"><i class="fas fa-compass"></i> <span data-i18n="nav_howitworks">Cómo funciona</span></a></li>
-            <li><a href="#testimonios"><i class="fas fa-comment"></i> <span data-i18n="testimonials_badge">Testimonios</span></a></li>
+            <li><a href="#caracteristicas" data-i18n="nav_features">Características</a></li>
+            <li><a href="#precios" data-i18n="nav_pricing">Precios</a></li>
+            <li><a href="#como-funciona" data-i18n="nav_howitworks">Cómo funciona</a></li>
+            <li><a href="#testimonios" data-i18n="testimonials_badge">Testimonios</a></li>
           </ul>
         </div>
         
@@ -1880,6 +1871,7 @@
       const t = translations[lang];
       if (!t) return;
       
+      // Aplicar a todos los elementos con data-i18n
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (t[key] !== undefined) {
@@ -1887,6 +1879,7 @@
         }
       });
       
+      // Actualizar precios y elementos que no son solo texto
       document.querySelectorAll('.price').forEach(el => {
         const parent = el.closest('.pricing-card');
         if (parent) {
@@ -1909,13 +1902,16 @@
     
     // Añadir selector de idioma
     document.addEventListener('DOMContentLoaded', function() {
-      const langSelectorContainer = document.querySelector('.lang-selector');
-      if (langSelectorContainer) {
-        langSelectorContainer.innerHTML = `
-          <button class="lang-btn" data-lang="es">🇪🇸</button>
-          <button class="lang-btn" data-lang="en">🇬🇧</button>
-          <button class="lang-btn" data-lang="pt">🇧🇷</button>
+      const headerContainer = document.querySelector('.header .container');
+      if (headerContainer) {
+        const langSelector = document.createElement('div');
+        langSelector.className = 'lang-selector';
+        langSelector.innerHTML = `
+          <button class="lang-btn" data-lang="es" style="background:none; border:none; cursor:pointer; font-size:14px; padding:4px 8px; border-radius:8px;">🇪🇸</button>
+          <button class="lang-btn" data-lang="en" style="background:none; border:none; cursor:pointer; font-size:14px; padding:4px 8px; border-radius:8px;">🇬🇧</button>
+          <button class="lang-btn" data-lang="pt" style="background:none; border:none; cursor:pointer; font-size:14px; padding:4px 8px; border-radius:8px;">🇧🇷</button>
         `;
+        headerContainer.appendChild(langSelector);
         
         document.querySelectorAll('.lang-btn').forEach(btn => {
           btn.addEventListener('click', (e) => {
