@@ -82,8 +82,8 @@
       position: sticky;
       top: 20px;
       z-index: 100;
-      margin: 20px auto;
       max-width: 1200px;
+      margin: 20px auto;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border-radius: 100px;
@@ -1037,18 +1037,18 @@
     @media (max-width: 768px) {
       /* HEADER RESPONSIVE */
       .header {
-        padding: 12px 20px;
-        width: calc(100% - 20px);
-        border-radius: 60px;
+        width: calc(100% - 32px);
+        margin: 16px auto;
+        padding: 10px 16px;
       }
       
       .header .container {
-        flex-wrap: wrap;
+        width: 100%;
       }
       
       .menu-toggle {
         display: block;
-        order: 1;
+        order: 2;
       }
       
       .nav-links {
@@ -1057,7 +1057,7 @@
         flex-direction: column;
         gap: 10px;
         padding: 20px 0 10px;
-        order: 2;
+        order: 3;
       }
       
       .nav-links.active {
@@ -1070,13 +1070,17 @@
       }
       
       .header-actions {
-        order: 0;
+        order: 1;
         margin-left: auto;
       }
       
       /* HERO MÓVIL */
+      .hero {
+        padding: 40px 0 30px;
+      }
+      
       .hero h1 {
-        font-size: 36px;
+        font-size: 32px;
       }
       
       .hero p {
@@ -1095,6 +1099,7 @@
       .hero-stats {
         justify-content: center;
         text-align: center;
+        gap: 20px;
       }
       
       /* TARJETAS EN MÓVIL */
@@ -1107,13 +1112,17 @@
         grid-template-columns: 1fr;
       }
       
+      .steps {
+        gap: 30px;
+      }
+      
       .step:not(:last-child)::after {
         display: none;
       }
       
       /* SECCIONES */
       .section-title {
-        font-size: 32px;
+        font-size: 28px;
       }
       
       .section-subtitle {
@@ -1182,6 +1191,7 @@
       
       .header {
         width: calc(100% - 16px);
+        margin: 12px auto;
       }
       
       .hero h1 {
@@ -1189,7 +1199,7 @@
       }
       
       .section-title {
-        font-size: 28px;
+        font-size: 24px;
       }
       
       .price {
@@ -1208,6 +1218,16 @@
       .btn-outline {
         padding: 8px 16px;
         font-size: 12px;
+      }
+      
+      .logo-text {
+        font-size: 18px;
+      }
+      
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
       }
     }
   </style>
