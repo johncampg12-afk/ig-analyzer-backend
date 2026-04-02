@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
   <style>
+    /* [TODO EL CSS EXISTENTE SE MANTIENE IGUAL] */
     * {
       margin: 0;
       padding: 0;
@@ -1001,6 +1002,29 @@
         font-size: 32px;
       }
     }
+    
+    /* Selector de idioma */
+    .lang-selector {
+      display: flex;
+      gap: 5px;
+      margin-left: 15px;
+    }
+    
+    .lang-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      opacity: 0.5;
+    }
+    
+    .lang-btn:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
@@ -1019,15 +1043,15 @@
       </div>
       
       <nav class="nav-links">
-        <a href="#caracteristicas"><i class="fas fa-crown"></i> Características</a>
-        <a href="#como-funciona"><i class="fas fa-compass"></i> Cómo funciona</a>
-        <a href="#precios"><i class="fas fa-tag"></i> Precios</a>
-        <a href="#faq"><i class="fas fa-circle-question"></i> FAQ</a>
+        <a href="#caracteristicas" data-i18n="nav_features">Características</a>
+        <a href="#como-funciona" data-i18n="nav_howitworks">Cómo funciona</a>
+        <a href="#precios" data-i18n="nav_pricing">Precios</a>
+        <a href="#faq" data-i18n="nav_faq">FAQ</a>
       </nav>
       
-      <div>
+      <div style="display: flex; align-items: center;">
         <button class="btn btn-outline" onclick="window.open('https://www.instagram.com', '_blank')">
-          <i class="fab fa-instagram"></i> Abrir Instagram
+          <i class="fab fa-instagram"></i> <span data-i18n="btn_open_instagram">Abrir Instagram</span>
         </button>
       </div>
     </div>
@@ -1040,36 +1064,36 @@
         <div class="hero-left">
           <div class="hero-badge">
             <i class="fas fa-fire"></i>
-            <span>Más de 50,000 usuarios activos</span>
+            <span data-i18n="hero_badge">Más de 50,000 usuarios activos</span>
           </div>
           
           <h1>
-            ¿Quién te ha <span class="hero-highlight">dejado de seguir</span> en Instagram?
+            <span data-i18n="hero_title_part1">¿Quién te ha</span> <span class="hero-highlight" data-i18n="hero_title_highlight">dejado de seguir</span> <span data-i18n="hero_title_part2">en Instagram?</span>
           </h1>
           
-          <p>Descubre en segundos qué cuentas no te siguen de vuelta. Simple, rápido y muy divertido. Únete a la comunidad más cotilla de Instagram.</p>
+          <p data-i18n="hero_description">Descubre en segundos qué cuentas no te siguen de vuelta. Simple, rápido y muy divertido. Únete a la comunidad más cotilla de Instagram.</p>
           
           <div class="hero-cta">
             <button class="btn btn-primary" id="comprar-hero">
-              <i class="fas fa-arrow-right"></i> Comprar ahora
+              <i class="fas fa-arrow-right"></i> <span data-i18n="btn_buy_now">Comprar ahora</span>
             </button>
             <button class="btn btn-outline" id="descargar-extension">
-              <i class="fas fa-download"></i> Descarga la Extensión
+              <i class="fas fa-download"></i> <span data-i18n="btn_download">Descarga la Extensión</span>
             </button>
           </div>
           
           <div class="hero-stats">
             <div class="stat">
               <span class="stat-number">150</span>
-              <span class="stat-label">Usuarios de media no te siguen</span>
+              <span class="stat-label" data-i18n="stat_users">Usuarios de media no te siguen</span>
             </div>
             <div class="stat">
               <span class="stat-number">⭐ 4.9</span>
-              <span class="stat-label">Nuestra valoración</span>
+              <span class="stat-label" data-i18n="stat_rating">Nuestra valoración</span>
             </div>
             <div class="stat">
               <span class="stat-number">5min</span>
-              <span class="stat-label">es lo que tardas</span>
+              <span class="stat-label" data-i18n="stat_time">es lo que tardas</span>
             </div>
           </div>
         </div>
@@ -1141,10 +1165,11 @@
     <div class="container">
       <div class="section-header">
         <div class="section-badge">
-          <i class="fas fa-crown"></i> Todo lo que necesitas
+          <i class="fas fa-crown"></i>
+          <span data-i18n="features_badge">Todo lo que necesitas</span>
         </div>
-        <h2 class="section-title">Funcionalidades profesionales</h2>
-        <p class="section-subtitle">Una herramienta simple pero poderosa para los más curiosos</p>
+        <h2 class="section-title" data-i18n="features_title">Funcionalidades profesionales</h2>
+        <p class="section-subtitle" data-i18n="features_subtitle">Una herramienta simple pero poderosa para los más curiosos</p>
       </div>
       
       <div class="features-grid">
@@ -1152,24 +1177,24 @@
           <div class="feature-icon">
             <i class="fas fa-users-slash"></i>
           </div>
-          <h3>Detección inmediata</h3>
-          <p>Descubre al instante qué cuentas no te siguen de vuelta.</p>
+          <h3 data-i18n="feature_1_title">Detección inmediata</h3>
+          <p data-i18n="feature_1_desc">Descubre al instante qué cuentas no te siguen de vuelta.</p>
         </div>
         
         <div class="feature-card">
           <div class="feature-icon">
             <i class="fas fa-chart-line"></i>
           </div>
-          <h3>Estadísticas detalladas</h3>
-          <p>Análisis completo de tu audiencia y su comportamiento.</p>
+          <h3 data-i18n="feature_2_title">Estadísticas detalladas</h3>
+          <p data-i18n="feature_2_desc">Análisis completo de tu audiencia y su comportamiento.</p>
         </div>
         
         <div class="feature-card">
           <div class="feature-icon">
             <i class="fas fa-shield"></i>
           </div>
-          <h3>Seguridad garantizada</h3>
-          <p>No almacenamos tus datos. Todo es local y privado.</p>
+          <h3 data-i18n="feature_3_title">Seguridad garantizada</h3>
+          <p data-i18n="feature_3_desc">No almacenamos tus datos. Todo es local y privado.</p>
         </div>
       </div>
     </div>
@@ -1180,29 +1205,30 @@
     <div class="container">
       <div class="section-header">
         <div class="section-badge">
-          <i class="fas fa-compass"></i> Así de fácil
+          <i class="fas fa-compass"></i>
+          <span data-i18n="how_badge">Así de fácil</span>
         </div>
-        <h2 class="section-title">3 pasos y ya estás cotilleando</h2>
-        <p class="section-subtitle">Más simple imposible</p>
+        <h2 class="section-title" data-i18n="how_title">3 pasos y ya estás cotilleando</h2>
+        <p class="section-subtitle" data-i18n="how_subtitle">Más simple imposible</p>
       </div>
       
       <div class="steps">
         <div class="step">
           <div class="step-number">1</div>
-          <h3>Instala la extensión</h3>
-          <p>Añade IG Analyzer a tu navegador favorito</p>
+          <h3 data-i18n="step_1_title">Instala la extensión</h3>
+          <p data-i18n="step_1_desc">Añade IG Analyzer a tu navegador favorito</p>
         </div>
         
         <div class="step">
           <div class="step-number">2</div>
-          <h3>Ve a tu perfil</h3>
-          <p>Abre Instagram y navega hasta tu cuenta</p>
+          <h3 data-i18n="step_2_title">Ve a tu perfil</h3>
+          <p data-i18n="step_2_desc">Abre Instagram y navega hasta tu cuenta</p>
         </div>
         
         <div class="step">
           <div class="step-number">3</div>
-          <h3>¡Sorpresa!</h3>
-          <p>Haz clic en el botón Analizar y obtén la lista de quienes no te siguen. Prepárate para las sorpresas.</p>
+          <h3 data-i18n="step_3_title">¡Sorpresa!</h3>
+          <p data-i18n="step_3_desc">Haz clic en el botón Analizar y obtén la lista de quienes no te siguen. Prepárate para las sorpresas.</p>
         </div>
       </div>
     </div>
@@ -1213,10 +1239,11 @@
     <div class="container">
       <div class="section-header">
         <div class="section-badge">
-          <i class="fas fa-tag"></i> Precios claros
+          <i class="fas fa-tag"></i>
+          <span data-i18n="pricing_badge">Precios claros</span>
         </div>
-        <h2 class="section-title">Paga una vez y cotillea todo el año</h2>
-        <p class="section-subtitle">Menos de 1,30€ al mes. Más barato que un café a la semana.</p>
+        <h2 class="section-title" data-i18n="pricing_title">Paga una vez y cotillea todo el año</h2>
+        <p class="section-subtitle" data-i18n="pricing_subtitle">Menos de 1,30€ al mes. Más barato que un café a la semana.</p>
       </div>
       
       <div class="pricing-grid">
@@ -1225,43 +1252,43 @@
           <div class="pricing-icon">
             <i class="fas fa-calendar-day"></i>
           </div>
-          <h3>Pase Diario</h3>
-          <div class="price">1,75€ <span></span></div>
-          <div class="price-description">Perfecto para probar</div>
+          <h3 data-i18n="daily_name">Pase Diario</h3>
+          <div class="price"><span data-i18n="daily_price">1,75€</span></div>
+          <div class="price-description" data-i18n="daily_desc">Perfecto para probar</div>
           
           <ul class="pricing-features">
-            <li><i class="fas fa-check-circle"></i> Acceso PRO por 24h</li>
-            <li><i class="fas fa-check-circle"></i> Análisis ilimitados</li>
-            <li><i class="fas fa-check-circle"></i> Lista completa</li>
-            <li><i class="fas fa-check-circle"></i> Sin compromiso</li>
-            <li><i class="fas fa-check-circle"></i> 1 dispositivo</li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="daily_feature_1">Acceso PRO por 24h</span></li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="daily_feature_2">Análisis ilimitados</span></li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="daily_feature_3">Lista completa</span></li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="daily_feature_4">Sin compromiso</span></li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="daily_feature_5">1 dispositivo</span></li>
           </ul>
           
           <button class="btn btn-outline comprar-btn" data-plan="daily">
-            Probar por 1,75€
+            <span data-i18n="daily_btn">Probar por 1,75€</span>
           </button>
         </div>
         
         <!-- Plan Anual (POPULAR) -->
         <div class="pricing-card popular">
-          <div class="popular-tag">MÁS POPULAR</div>
+          <div class="popular-tag" data-i18n="popular_tag">MÁS POPULAR</div>
           <div class="pricing-icon">
             <i class="fas fa-crown"></i>
           </div>
-          <h3>Plan Anual</h3>
-          <div class="price">15,99€ <span>/año</span></div>
-          <div class="price-description">Menos de 1,30€ al mes.</div>
+          <h3 data-i18n="annual_name">Plan Anual</h3>
+          <div class="price"><span data-i18n="annual_price">15,99€</span><span data-i18n="annual_period">/año</span></div>
+          <div class="price-description" data-i18n="annual_desc">Menos de 1,30€ al mes.</div>
           
           <ul class="pricing-features">
-            <li><i class="fas fa-check-circle"></i> Análisis ilimitados</li>
-            <li><i class="fas fa-check-circle"></i> Lista completa</li>
-            <li><i class="fas fa-check-circle"></i> Actualizaciones y futuras nuevas funciones gratis</li>
-            <li><i class="fas fa-check-circle"></i> 1 dispositivo</li>
-            <li><i class="fas fa-check-circle"></i> Soporte prioritario</li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="annual_feature_1">Análisis ilimitados</span></li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="annual_feature_2">Lista completa</span></li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="annual_feature_3">Actualizaciones y futuras nuevas funciones gratis</span></li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="annual_feature_4">1 dispositivo</span></li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="annual_feature_5">Soporte prioritario</span></li>
           </ul>
           
           <button class="btn btn-primary comprar-btn" data-plan="annual">
-            Elegir anual
+            <span data-i18n="annual_btn">Elegir anual</span>
           </button>
         </div>
         
@@ -1270,20 +1297,20 @@
           <div class="pricing-icon">
             <i class="fas fa-infinity"></i>
           </div>
-          <h3>Lifetime</h3>
-          <div class="price">99,00€ <span>pago único</span></div>
-          <div class="price-description">Paga una vez, usa siempre</div>
+          <h3 data-i18n="lifetime_name">Lifetime</h3>
+          <div class="price"><span data-i18n="lifetime_price">99,00€</span> <span data-i18n="lifetime_period">pago único</span></div>
+          <div class="price-description" data-i18n="lifetime_desc">Paga una vez, usa siempre</div>
           
           <ul class="pricing-features">
-            <li><i class="fas fa-check-circle"></i> Todo del plan anual</li>
-            <li><i class="fas fa-check-circle"></i> Para siempre</li>
-            <li><i class="fas fa-check-circle"></i> Actualizaciones y futuras nuevas funciones gratis</li>
-            <li><i class="fas fa-check-circle"></i> 1 dispositivo</li>
-            <li><i class="fas fa-check-circle"></i> Soporte prioritario</li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="lifetime_feature_1">Todo del plan anual</span></li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="lifetime_feature_2">Para siempre</span></li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="lifetime_feature_3">Actualizaciones y futuras nuevas funciones gratis</span></li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="lifetime_feature_4">1 dispositivo</span></li>
+            <li><i class="fas fa-check-circle"></i> <span data-i18n="lifetime_feature_5">Soporte prioritario</span></li>
           </ul>
           
           <button class="btn btn-outline comprar-btn" data-plan="lifetime">
-            Elegir lifetime
+            <span data-i18n="lifetime_btn">Elegir lifetime</span>
           </button>
         </div>
       </div>
@@ -1295,10 +1322,11 @@
     <div class="container">
       <div class="section-header">
         <div class="section-badge">
-          <i class="fas fa-comment"></i> Testimonios
+          <i class="fas fa-comment"></i>
+          <span data-i18n="testimonials_badge">Testimonios</span>
         </div>
-        <h2 class="section-title">Lo que dicen nuestros usuarios</h2>
-        <p class="section-subtitle">Miles de personas ya lo usan</p>
+        <h2 class="section-title" data-i18n="testimonials_title">Lo que dicen nuestros usuarios</h2>
+        <p class="section-subtitle" data-i18n="testimonials_subtitle">Miles de personas ya lo usan</p>
       </div>
       
       <div class="testimonials-grid">
@@ -1352,65 +1380,60 @@
     <div class="container">
       <div class="section-header">
         <div class="section-badge">
-          <i class="fas fa-circle-question"></i> FAQ
+          <i class="fas fa-circle-question"></i>
+          <span data-i18n="faq_badge">Preguntas frecuentes</span>
         </div>
-        <h2 class="section-title">Preguntas frecuentes</h2>
-        <p class="section-subtitle">Resolvemos tus dudas</p>
+        <h2 class="section-title" data-i18n="faq_title">Preguntas frecuentes</h2>
+        <p class="section-subtitle" data-i18n="faq_subtitle">Resolvemos tus dudas</p>
       </div>
       
       <div class="faq-grid">
         <div class="faq-item">
           <div class="faq-question">
-            <i class="fas fa-shield"></i> ¿Es seguro?
+            <i class="fas fa-shield"></i>
+            <span data-i18n="faq_q1">¿Es seguro?</span>
           </div>
-          <div class="faq-answer">
-            Totalmente. No pedimos tu contraseña. Todo el análisis se hace localmente en tu navegador.
-          </div>
+          <div class="faq-answer" data-i18n="faq_a1">Totalmente. No pedimos tu contraseña. Todo el análisis se hace localmente en tu navegador.</div>
         </div>
         
         <div class="faq-item">
           <div class="faq-question">
-            <i class="fas fa-mobile"></i> ¿Funciona en móvil?
+            <i class="fas fa-mobile"></i>
+            <span data-i18n="faq_q2">¿Funciona en móvil?</span>
           </div>
-          <div class="faq-answer">
-            No, por el momento solo se puede en el ordenador, pero estamos desarrollando IG Analyzer 1.2, que SI se podrá usar en el móvil.
-          </div>
+          <div class="faq-answer" data-i18n="faq_a2">No, por el momento solo se puede en el ordenador, pero estamos desarrollando IG Analyzer 1.2, que SI se podrá usar en el móvil.</div>
         </div>
         
         <div class="faq-item">
           <div class="faq-question">
-            <i class="fas fa-clock"></i> ¿Cuánto tarda?
+            <i class="fas fa-clock"></i>
+            <span data-i18n="faq_q3">¿Cuánto tarda?</span>
           </div>
-          <div class="faq-answer">
-            Entre 5 y 8 minutos, dependiendo de tu número de seguidores, tu número de seguidos y la velocidad de conexión a internet.
-          </div>
+          <div class="faq-answer" data-i18n="faq_a3">Entre 5 y 8 minutos, dependiendo de tu número de seguidores, tu número de seguidos y la velocidad de conexión a internet.</div>
         </div>
         
         <div class="faq-item">
           <div class="faq-question">
-            <i class="fas fa-refresh"></i> ¿Puedo usarlo a diario?
+            <i class="fas fa-refresh"></i>
+            <span data-i18n="faq_q4">¿Puedo usarlo a diario?</span>
           </div>
-          <div class="faq-answer">
-            ¡Claro! Las veces que quieras, pero con precaución. Deja un intervalo de tiempo entre análisis y análisis para evitar problemas con Instagram.
-          </div>
+          <div class="faq-answer" data-i18n="faq_a4">¡Claro! Las veces que quieras, pero con precaución. Deja un intervalo de tiempo entre análisis y análisis para evitar problemas con Instagram.</div>
         </div>
         
         <div class="faq-item">
           <div class="faq-question">
-            <i class="fas fa-credit-card"></i> ¿Cómo funciona el pago?
+            <i class="fas fa-credit-card"></i>
+            <span data-i18n="faq_q5">¿Cómo funciona el pago?</span>
           </div>
-          <div class="faq-answer">
-            Pago único por Stripe. Tarjetas de crédito/débito. 100% seguro.
-          </div>
+          <div class="faq-answer" data-i18n="faq_a5">Pago único por Stripe. Tarjetas de crédito/débito. 100% seguro.</div>
         </div>
         
         <div class="faq-item">
           <div class="faq-question">
-            <i class="fas fa-undo"></i> ¿Tienen reembolso?
+            <i class="fas fa-undo"></i>
+            <span data-i18n="faq_q6">¿Tienen reembolso?</span>
           </div>
-          <div class="faq-answer">
-            No, no aplicamos reembolso.
-          </div>
+          <div class="faq-answer" data-i18n="faq_a6">No, no aplicamos reembolso.</div>
         </div>
       </div>
     </div>
@@ -1419,10 +1442,10 @@
   <!-- CTA GRANDE -->
   <div class="container">
     <section class="cta-large" id="contacto">
-      <h2>¿Listo para descubrir la verdad?</h2>
-      <p>Más de 50,000 personas ya lo usan. Únete ahora.</p>
+      <h2 data-i18n="cta_title">¿Listo para descubrir la verdad?</h2>
+      <p data-i18n="cta_subtitle">Más de 50,000 personas ya lo usan. Únete ahora.</p>
       <button class="btn btn-primary" id="comprar-cta">
-        <i class="fas fa-arrow-right"></i> Comprar ahora
+        <i class="fas fa-arrow-right"></i> <span data-i18n="cta_btn">Comprar ahora</span>
       </button>
     </section>
   </div>
@@ -1435,7 +1458,7 @@
           <div class="footer-logo">
             <i class="fas fa-chart-line"></i> IG Analyzer
           </div>
-          <p class="footer-description">La herramienta más completa para análisis de Instagram. Descubre quién no te sigue y haz crecer tu cuenta.</p>
+          <p class="footer-description" data-i18n="footer_description">La herramienta más completa para análisis de Instagram. Descubre quién no te sigue y haz crecer tu cuenta.</p>
           <div class="social-links">
             <a href="https://x.com/igproanalyzer"><i class="fab fa-twitter"></i></a>
             <a href="https://www.instagram.com/igproanalyzer/"><i class="fab fa-instagram"></i></a>
@@ -1444,38 +1467,38 @@
         </div>
         
         <div class="footer-links">
-          <h4>Producto</h4>
+          <h4 data-i18n="footer_product">Producto</h4>
           <ul>
-            <li><a href="#caracteristicas">Características</a></li>
-            <li><a href="#precios">Precios</a></li>
-            <li><a href="#como-funciona">Cómo funciona</a></li>
-            <li><a href="#testimonios">Testimonios</a></li>
+            <li><a href="#caracteristicas" data-i18n="nav_features">Características</a></li>
+            <li><a href="#precios" data-i18n="nav_pricing">Precios</a></li>
+            <li><a href="#como-funciona" data-i18n="nav_howitworks">Cómo funciona</a></li>
+            <li><a href="#testimonios" data-i18n="testimonials_badge">Testimonios</a></li>
           </ul>
         </div>
         
         <div class="footer-links">
-          <h4>Recursos</h4>
+          <h4 data-i18n="footer_resources">Recursos</h4>
           <ul>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Guía de uso</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#">Soporte</a></li>
+            <li><a href="#" data-i18n="footer_blog">Blog</a></li>
+            <li><a href="#" data-i18n="footer_guide">Guía de uso</a></li>
+            <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+            <li><a href="#" data-i18n="footer_support">Soporte</a></li>
           </ul>
         </div>
         
         <div class="footer-links">
-          <h4>Legal</h4>
+          <h4 data-i18n="footer_legal">Legal</h4>
           <ul>
-            <li><a href="/terms.html">Términos de uso</a></li>
-            <li><a href="/privacy.html">Política de privacidad</a></li>
-            <li><a href="/legal.html">Aviso legal</a></li>
-            <li><a href="">Contacto: infoigproanalyzer@gmail.com</a></li>
+            <li><a href="/terms.html" data-i18n="footer_terms">Términos de uso</a></li>
+            <li><a href="/privacy.html" data-i18n="footer_privacy">Política de privacidad</a></li>
+            <li><a href="/legal.html" data-i18n="footer_legal_notice">Aviso legal</a></li>
+            <li><a href="mailto:infoigproanalyzer@gmail.com" data-i18n="footer_contact">Contacto: infoigproanalyzer@gmail.com</a></li>
           </ul>
         </div>
       </div>
       
       <div class="copyright">
-        <p>© 2026 IG Analyzer. Todos los derechos reservados.</p>
+        <p>© 2026 IG Analyzer. <span data-i18n="footer_copyright">Todos los derechos reservados.</span></p>
       </div>
     </div>
   </footer>
@@ -1485,11 +1508,9 @@
     // FUNCIONES DE COMPRA
     // ============================================
     
-    // Función de compra unificada
     function comprar(plan = 'annual') {
       console.log('Iniciando compra del plan:', plan);
       
-      // Guardar referencia al botón que disparó el evento
       const button = event?.target;
       const originalText = button?.innerText;
       
@@ -1500,20 +1521,15 @@
       
       fetch('https://www.igpro-analyzer.com/api/create-checkout', {
         method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ plan: plan })
       })
       .then(res => {
-        if (!res.ok) {
-          throw new Error('Error en la respuesta del servidor');
-        }
+        if (!res.ok) throw new Error('Error en la respuesta del servidor');
         return res.json();
       })
       .then(data => {
         if (data.url) {
-          // Redirigir a Stripe Checkout
           window.location.href = data.url;
         } else {
           alert('Error al iniciar la compra. Intenta de nuevo.');
@@ -1533,43 +1549,407 @@
       });
     }
     
-    // Asignar eventos cuando el DOM esté cargado
-    document.addEventListener('DOMContentLoaded', function() {
+    // ============================================
+    // SISTEMA DE IDIOMAS
+    // ============================================
+    
+    const translations = {
+      es: {
+        nav_features: "Características",
+        nav_howitworks: "Cómo funciona",
+        nav_pricing: "Precios",
+        nav_faq: "FAQ",
+        btn_open_instagram: "Abrir Instagram",
+        hero_badge: "Más de 50,000 usuarios activos",
+        hero_title_part1: "¿Quién te ha",
+        hero_title_highlight: "dejado de seguir",
+        hero_title_part2: "en Instagram?",
+        hero_description: "Descubre en segundos qué cuentas no te siguen de vuelta. Simple, rápido y muy divertido. Únete a la comunidad más cotilla de Instagram.",
+        btn_buy_now: "Comprar ahora",
+        btn_download: "Descarga la Extensión",
+        stat_users: "Usuarios de media no te siguen",
+        stat_rating: "Nuestra valoración",
+        stat_time: "es lo que tardas",
+        features_badge: "Todo lo que necesitas",
+        features_title: "Funcionalidades profesionales",
+        features_subtitle: "Una herramienta simple pero poderosa para los más curiosos",
+        feature_1_title: "Detección inmediata",
+        feature_1_desc: "Descubre al instante qué cuentas no te siguen de vuelta.",
+        feature_2_title: "Estadísticas detalladas",
+        feature_2_desc: "Análisis completo de tu audiencia y su comportamiento.",
+        feature_3_title: "Seguridad garantizada",
+        feature_3_desc: "No almacenamos tus datos. Todo es local y privado.",
+        how_badge: "Así de fácil",
+        how_title: "3 pasos y ya estás cotilleando",
+        how_subtitle: "Más simple imposible",
+        step_1_title: "Instala la extensión",
+        step_1_desc: "Añade IG Analyzer a tu navegador favorito",
+        step_2_title: "Ve a tu perfil",
+        step_2_desc: "Abre Instagram y navega hasta tu cuenta",
+        step_3_title: "¡Sorpresa!",
+        step_3_desc: "Haz clic en el botón Analizar y obtén la lista de quienes no te siguen. Prepárate para las sorpresas.",
+        pricing_badge: "Precios claros",
+        pricing_title: "Paga una vez y cotillea todo el año",
+        pricing_subtitle: "Menos de 1,30€ al mes. Más barato que un café a la semana.",
+        daily_name: "Pase Diario",
+        daily_price: "1,75€",
+        daily_desc: "Perfecto para probar",
+        daily_feature_1: "Acceso PRO por 24h",
+        daily_feature_2: "Análisis ilimitados",
+        daily_feature_3: "Lista completa",
+        daily_feature_4: "Sin compromiso",
+        daily_feature_5: "1 dispositivo",
+        daily_btn: "Probar por 1,75€",
+        annual_name: "Plan Anual",
+        annual_price: "15,99€",
+        annual_period: "/año",
+        annual_desc: "Menos de 1,30€ al mes.",
+        annual_feature_1: "Análisis ilimitados",
+        annual_feature_2: "Lista completa",
+        annual_feature_3: "Actualizaciones y futuras nuevas funciones gratis",
+        annual_feature_4: "1 dispositivo",
+        annual_feature_5: "Soporte prioritario",
+        annual_btn: "Elegir anual",
+        popular_tag: "MÁS POPULAR",
+        lifetime_name: "Lifetime",
+        lifetime_price: "99,00€",
+        lifetime_period: "pago único",
+        lifetime_desc: "Paga una vez, usa siempre",
+        lifetime_feature_1: "Todo del plan anual",
+        lifetime_feature_2: "Para siempre",
+        lifetime_feature_3: "Actualizaciones y futuras nuevas funciones gratis",
+        lifetime_feature_4: "1 dispositivo",
+        lifetime_feature_5: "Soporte prioritario",
+        lifetime_btn: "Elegir lifetime",
+        testimonials_badge: "Testimonios",
+        testimonials_title: "Lo que dicen nuestros usuarios",
+        testimonials_subtitle: "Miles de personas ya lo usan",
+        faq_badge: "Preguntas frecuentes",
+        faq_title: "Preguntas frecuentes",
+        faq_subtitle: "Resolvemos tus dudas",
+        faq_q1: "¿Es seguro?",
+        faq_a1: "Totalmente. No pedimos tu contraseña. Todo el análisis se hace localmente en tu navegador.",
+        faq_q2: "¿Funciona en móvil?",
+        faq_a2: "No, por el momento solo se puede en el ordenador, pero estamos desarrollando IG Analyzer 1.2, que SI se podrá usar en el móvil.",
+        faq_q3: "¿Cuánto tarda?",
+        faq_a3: "Entre 5 y 8 minutos, dependiendo de tu número de seguidores, tu número de seguidos y la velocidad de conexión a internet.",
+        faq_q4: "¿Puedo usarlo a diario?",
+        faq_a4: "¡Claro! Las veces que quieras, pero con precaución. Deja un intervalo de tiempo entre análisis y análisis para evitar problemas con Instagram.",
+        faq_q5: "¿Cómo funciona el pago?",
+        faq_a5: "Pago único por Stripe. Tarjetas de crédito/débito. 100% seguro.",
+        faq_q6: "¿Tienen reembolso?",
+        faq_a6: "No, no aplicamos reembolso.",
+        cta_title: "¿Listo para descubrir la verdad?",
+        cta_subtitle: "Más de 50,000 personas ya lo usan. Únete ahora.",
+        cta_btn: "Comprar ahora",
+        footer_description: "La herramienta más completa para análisis de Instagram. Descubre quién no te sigue y haz crecer tu cuenta.",
+        footer_product: "Producto",
+        footer_resources: "Recursos",
+        footer_legal: "Legal",
+        footer_blog: "Blog",
+        footer_guide: "Guía de uso",
+        footer_support: "Soporte",
+        footer_terms: "Términos de uso",
+        footer_privacy: "Política de privacidad",
+        footer_legal_notice: "Aviso legal",
+        footer_contact: "Contacto",
+        footer_copyright: "Todos los derechos reservados"
+      },
+      en: {
+        nav_features: "Features",
+        nav_howitworks: "How it works",
+        nav_pricing: "Pricing",
+        nav_faq: "FAQ",
+        btn_open_instagram: "Open Instagram",
+        hero_badge: "Over 50,000 active users",
+        hero_title_part1: "Who has",
+        hero_title_highlight: "unfollowed",
+        hero_title_part2: "you on Instagram?",
+        hero_description: "Discover in seconds which accounts don't follow you back. Simple, fast, and fun. Join the most curious community on Instagram.",
+        btn_buy_now: "Buy now",
+        btn_download: "Download Extension",
+        stat_users: "Average users who don't follow you",
+        stat_rating: "Our rating",
+        stat_time: "is what it takes",
+        features_badge: "Everything you need",
+        features_title: "Professional features",
+        features_subtitle: "A simple but powerful tool for the curious",
+        feature_1_title: "Instant detection",
+        feature_1_desc: "Discover instantly which accounts don't follow you back.",
+        feature_2_title: "Detailed statistics",
+        feature_2_desc: "Complete analysis of your audience and their behavior.",
+        feature_3_title: "Guaranteed security",
+        feature_3_desc: "We don't store your data. Everything is local and private.",
+        how_badge: "Easy as that",
+        how_title: "3 steps and you're already snooping",
+        how_subtitle: "Couldn't be simpler",
+        step_1_title: "Install the extension",
+        step_1_desc: "Add IG Analyzer to your favorite browser",
+        step_2_title: "Go to your profile",
+        step_2_desc: "Open Instagram and go to your account",
+        step_3_title: "Surprise!",
+        step_3_desc: "Click the Analyze button and get the list of who doesn't follow you. Prepare for surprises.",
+        pricing_badge: "Clear pricing",
+        pricing_title: "Pay once and snoop all year",
+        pricing_subtitle: "Less than €1.30 per month. Cheaper than a weekly coffee.",
+        daily_name: "Daily Pass",
+        daily_price: "€1.75",
+        daily_desc: "Perfect to try",
+        daily_feature_1: "24h PRO access",
+        daily_feature_2: "Unlimited analysis",
+        daily_feature_3: "Full list",
+        daily_feature_4: "No commitment",
+        daily_feature_5: "1 device",
+        daily_btn: "Try for €1.75",
+        annual_name: "Annual Plan",
+        annual_price: "€15.99",
+        annual_period: "/year",
+        annual_desc: "Less than €1.30/month",
+        annual_feature_1: "Unlimited analysis",
+        annual_feature_2: "Full list",
+        annual_feature_3: "Free updates and future features",
+        annual_feature_4: "1 device",
+        annual_feature_5: "Priority support",
+        annual_btn: "Choose annual",
+        popular_tag: "MOST POPULAR",
+        lifetime_name: "Lifetime",
+        lifetime_price: "€99.00",
+        lifetime_period: "one-time",
+        lifetime_desc: "Pay once, use forever",
+        lifetime_feature_1: "Everything in annual plan",
+        lifetime_feature_2: "Forever",
+        lifetime_feature_3: "Free updates and future features",
+        lifetime_feature_4: "1 device",
+        lifetime_feature_5: "Priority support",
+        lifetime_btn: "Choose lifetime",
+        testimonials_badge: "Testimonials",
+        testimonials_title: "What our users say",
+        testimonials_subtitle: "Thousands of people already use it",
+        faq_badge: "FAQ",
+        faq_title: "Frequently asked questions",
+        faq_subtitle: "We answer your doubts",
+        faq_q1: "Is it safe?",
+        faq_a1: "Absolutely. We don't ask for your password. All analysis is done locally in your browser.",
+        faq_q2: "Does it work on mobile?",
+        faq_a2: "Not yet, only on desktop for now. But we're developing IG Analyzer 1.2, which WILL work on mobile.",
+        faq_q3: "How long does it take?",
+        faq_a3: "Between 5 and 8 minutes, depending on your number of followers, following, and internet speed.",
+        faq_q4: "Can I use it daily?",
+        faq_a4: "Of course! As many times as you want, but be careful. Leave some time between analyses to avoid issues with Instagram.",
+        faq_q5: "How does payment work?",
+        faq_a5: "One-time payment through Stripe. Credit/debit cards. 100% secure.",
+        faq_q6: "Do you offer refunds?",
+        faq_a6: "No, we don't offer refunds.",
+        cta_title: "Ready to discover the truth?",
+        cta_subtitle: "Over 50,000 people already use it. Join now.",
+        cta_btn: "Buy now",
+        footer_description: "The most complete tool for Instagram analysis. Discover who doesn't follow you and grow your account.",
+        footer_product: "Product",
+        footer_resources: "Resources",
+        footer_legal: "Legal",
+        footer_blog: "Blog",
+        footer_guide: "User guide",
+        footer_support: "Support",
+        footer_terms: "Terms of use",
+        footer_privacy: "Privacy policy",
+        footer_legal_notice: "Legal notice",
+        footer_contact: "Contact",
+        footer_copyright: "All rights reserved"
+      },
+      pt: {
+        nav_features: "Características",
+        nav_howitworks: "Como funciona",
+        nav_pricing: "Preços",
+        nav_faq: "FAQ",
+        btn_open_instagram: "Abrir Instagram",
+        hero_badge: "Mais de 50.000 usuários ativos",
+        hero_title_part1: "Quem deixou",
+        hero_title_highlight: "de te seguir",
+        hero_title_part2: "no Instagram?",
+        hero_description: "Descubra em segundos quais contas não te seguem de volta. Simples, rápido e muito divertido. Junte-se à comunidade mais curiosa do Instagram.",
+        btn_buy_now: "Comprar agora",
+        btn_download: "Baixar Extensão",
+        stat_users: "Usuários que não te seguem em média",
+        stat_rating: "Nossa avaliação",
+        stat_time: "é o que demora",
+        features_badge: "Tudo o que precisa",
+        features_title: "Funcionalidades profissionais",
+        features_subtitle: "Uma ferramenta simples mas poderosa para os curiosos",
+        feature_1_title: "Detecção imediata",
+        feature_1_desc: "Descubra instantaneamente quais contas não te seguem de volta.",
+        feature_2_title: "Estatísticas detalhadas",
+        feature_2_desc: "Análise completa da sua audiência e seu comportamento.",
+        feature_3_title: "Segurança garantida",
+        feature_3_desc: "Não armazenamos seus dados. Tudo é local e privado.",
+        how_badge: "Assim é fácil",
+        how_title: "3 passos e já estás a espiar",
+        how_subtitle: "Mais simples impossível",
+        step_1_title: "Instale a extensão",
+        step_1_desc: "Adicione IG Analyzer ao seu navegador favorito",
+        step_2_title: "Vá ao seu perfil",
+        step_2_desc: "Abra o Instagram e navegue até sua conta",
+        step_3_title: "Surpresa!",
+        step_3_desc: "Clique no botão Analisar e obtenha a lista de quem não te segue. Prepare-se para as surpresas.",
+        pricing_badge: "Preços claros",
+        pricing_title: "Pague uma vez e espie o ano todo",
+        pricing_subtitle: "Menos de €1,30 por mês. Mais barato que um café por semana.",
+        daily_name: "Passe Diário",
+        daily_price: "1,75€",
+        daily_desc: "Perfeito para experimentar",
+        daily_feature_1: "Acesso PRO por 24h",
+        daily_feature_2: "Análises ilimitadas",
+        daily_feature_3: "Lista completa",
+        daily_feature_4: "Sem compromisso",
+        daily_feature_5: "1 dispositivo",
+        daily_btn: "Experimentar por 1,75€",
+        annual_name: "Plano Anual",
+        annual_price: "15,99€",
+        annual_period: "/ano",
+        annual_desc: "Menos de €1,30/mês",
+        annual_feature_1: "Análises ilimitadas",
+        annual_feature_2: "Lista completa",
+        annual_feature_3: "Atualizações e futuras funcionalidades grátis",
+        annual_feature_4: "1 dispositivo",
+        annual_feature_5: "Suporte prioritário",
+        annual_btn: "Escolher anual",
+        popular_tag: "MAIS POPULAR",
+        lifetime_name: "Lifetime",
+        lifetime_price: "99,00€",
+        lifetime_period: "pagamento único",
+        lifetime_desc: "Pague uma vez, use sempre",
+        lifetime_feature_1: "Tudo do plano anual",
+        lifetime_feature_2: "Para sempre",
+        lifetime_feature_3: "Atualizações e futuras funcionalidades grátis",
+        lifetime_feature_4: "1 dispositivo",
+        lifetime_feature_5: "Suporte prioritário",
+        lifetime_btn: "Escolher lifetime",
+        testimonials_badge: "Depoimentos",
+        testimonials_title: "O que dizem nossos usuários",
+        testimonials_subtitle: "Milhares de pessoas já usam",
+        faq_badge: "Perguntas frequentes",
+        faq_title: "Perguntas frequentes",
+        faq_subtitle: "Resolvemos suas dúvidas",
+        faq_q1: "É seguro?",
+        faq_a1: "Totalmente. Não pedimos sua senha. Toda análise é feita localmente no seu navegador.",
+        faq_q2: "Funciona no celular?",
+        faq_a2: "Não, por enquanto só no computador, mas estamos desenvolvendo o IG Analyzer 1.2, que vai funcionar no celular.",
+        faq_q3: "Quanto tempo demora?",
+        faq_a3: "Entre 5 e 8 minutos, dependendo do seu número de seguidores, seguidos e velocidade da internet.",
+        faq_q4: "Posso usar diariamente?",
+        faq_a4: "Claro! Quantas vezes quiser, mas com cuidado. Deixe um intervalo entre análises para evitar problemas com o Instagram.",
+        faq_q5: "Como funciona o pagamento?",
+        faq_a5: "Pagamento único via Stripe. Cartões de crédito/débito. 100% seguro.",
+        faq_q6: "Oferecem reembolso?",
+        faq_a6: "Não, não oferecemos reembolso.",
+        cta_title: "Pronto para descobrir a verdade?",
+        cta_subtitle: "Mais de 50.000 pessoas já usam. Junte-se agora.",
+        cta_btn: "Comprar agora",
+        footer_description: "A ferramenta mais completa para análise do Instagram. Descubra quem não te segue e faça sua conta crescer.",
+        footer_product: "Produto",
+        footer_resources: "Recursos",
+        footer_legal: "Legal",
+        footer_blog: "Blog",
+        footer_guide: "Guia de uso",
+        footer_support: "Suporte",
+        footer_terms: "Termos de uso",
+        footer_privacy: "Política de privacidade",
+        footer_legal_notice: "Aviso legal",
+        footer_contact: "Contato",
+        footer_copyright: "Todos os direitos reservados"
+      }
+    };
+    
+    function detectLanguage() {
+      const browserLang = navigator.language || navigator.userLanguage;
+      const langCode = browserLang.split('-')[0].toLowerCase();
+      const supported = ['es', 'en', 'pt'];
+      if (supported.includes(langCode)) return langCode;
+      return 'es';
+    }
+    
+    function applyTranslations(lang) {
+      const t = translations[lang];
+      if (!t) return;
       
-      // 1. BOTONES CON ID ESPECÍFICOS (Hero y CTA)
-      const heroBtn = document.getElementById('comprar-hero');
-      if (heroBtn) {
-        heroBtn.addEventListener('click', (e) => {
-          e.target.innerText = 'Procesando...';
-          e.target.disabled = true;
-          comprar('annual');
+      // Aplicar a todos los elementos con data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) {
+          el.textContent = t[key];
+        }
+      });
+      
+      // Actualizar precios y elementos que no son solo texto
+      document.querySelectorAll('.price').forEach(el => {
+        const parent = el.closest('.pricing-card');
+        if (parent) {
+          const title = parent.querySelector('h3')?.textContent;
+          if (title === t.daily_name) {
+            el.innerHTML = `<span data-i18n="daily_price">${t.daily_price}</span>`;
+          } else if (title === t.annual_name) {
+            el.innerHTML = `<span data-i18n="annual_price">${t.annual_price}</span><span data-i18n="annual_period">${t.annual_period}</span>`;
+          } else if (title === t.lifetime_name) {
+            el.innerHTML = `<span data-i18n="lifetime_price">${t.lifetime_price}</span> <span data-i18n="lifetime_period">${t.lifetime_period}</span>`;
+          }
+        }
+      });
+    }
+    
+    // Inicializar
+    const userLang = localStorage.getItem('igana_lang') || detectLanguage();
+    console.log('Idioma detectado:', userLang);
+    applyTranslations(userLang);
+    
+    // Añadir selector de idioma
+    document.addEventListener('DOMContentLoaded', function() {
+      const headerContainer = document.querySelector('.header .container');
+      if (headerContainer) {
+        const langSelector = document.createElement('div');
+        langSelector.className = 'lang-selector';
+        langSelector.innerHTML = `
+          <button class="lang-btn" data-lang="es" style="background:none; border:none; cursor:pointer; font-size:14px; padding:4px 8px; border-radius:8px;">🇪🇸</button>
+          <button class="lang-btn" data-lang="en" style="background:none; border:none; cursor:pointer; font-size:14px; padding:4px 8px; border-radius:8px;">🇬🇧</button>
+          <button class="lang-btn" data-lang="pt" style="background:none; border:none; cursor:pointer; font-size:14px; padding:4px 8px; border-radius:8px;">🇧🇷</button>
+        `;
+        headerContainer.appendChild(langSelector);
+        
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const newLang = btn.getAttribute('data-lang');
+            applyTranslations(newLang);
+            localStorage.setItem('igana_lang', newLang);
+            
+            document.querySelectorAll('.lang-btn').forEach(b => {
+              b.style.opacity = '0.5';
+            });
+            btn.style.opacity = '1';
+          });
+        });
+        
+        const activeLang = localStorage.getItem('igana_lang') || userLang;
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          if (btn.getAttribute('data-lang') === activeLang) {
+            btn.style.opacity = '1';
+          } else {
+            btn.style.opacity = '0.5';
+          }
         });
       }
+      
+      // Botones de compra
+      const heroBtn = document.getElementById('comprar-hero');
+      if (heroBtn) heroBtn.addEventListener('click', (e) => comprar('annual'));
       
       const ctaBtn = document.getElementById('comprar-cta');
-      if (ctaBtn) {
-        ctaBtn.addEventListener('click', (e) => {
-          e.target.innerText = 'Procesando...';
-          e.target.disabled = true;
-          comprar('annual');
-        });
-      }
+      if (ctaBtn) ctaBtn.addEventListener('click', (e) => comprar('annual'));
       
-      // 2. BOTONES CON CLASE 'comprar-btn' (los de las tarjetas de precios)
       document.querySelectorAll('.comprar-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
           const plan = this.getAttribute('data-plan') || 'annual';
-          const originalText = this.innerText;
-          
-          this.disabled = true;
-          this.innerText = 'Procesando...';
-          
-          // ✅ AHORA EL PLAN DAILY TAMBIÉN FUNCIONA
           comprar(plan);
         });
       });
       
-      // 3. BOTÓN DE DESCARGA DE EXTENSIÓN
       const descargarBtn = document.getElementById('descargar-extension');
       if (descargarBtn) {
         descargarBtn.addEventListener('click', () => {
@@ -1577,24 +1957,15 @@
         });
       }
       
-      // 4. SMOOTH SCROLL PARA TODOS LOS ENLACES INTERNOS
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
           const targetId = this.getAttribute('href');
           if (targetId === '#') return;
-          
           const target = document.querySelector(targetId);
-          if (target) {
-            target.scrollIntoView({ 
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
       });
-      
-      console.log('✅ Landing page lista con planes: Daily (1,75€), Annual (15,99€) y Lifetime (99€)');
     });
   </script>
 </body>
