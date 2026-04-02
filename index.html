@@ -12,25 +12,20 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   
-  <!-- Fallback para navegadores antiguos -->
   <link rel="shortcut icon" href="/favicon.ico">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>IG Analyzer - Descubre quién no te sigue en Instagram</title>
   <meta name="description" content="La herramienta favorita de los instagramers para saber quién no te sigue. Rápido, divertido y muy fácil de usar.">
   
-  <!-- Open Graph -->
   <meta property="og:title" content="IG Analyzer - ¿Quién no te sigue?">
   <meta property="og:description" content="Descubre en segundos qué cuentas no te siguen de vuelta ⚡">
   <meta property="og:image" content="https://www.igpro-analyzer.com/og-image.jpg">
   <meta property="og:url" content="https://www.igpro-analyzer.com">
   
-  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   
   <style>
@@ -57,7 +52,7 @@
       width: 100%;
     }
     
-    /* DECORACIONES CON GRADIENTE INSTAGRAM */
+    /* BLOBS */
     .blob {
       position: absolute;
       width: 300px;
@@ -89,7 +84,7 @@
       z-index: 100;
       margin: 20px auto;
       max-width: 1200px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border-radius: 100px;
       padding: 12px 24px;
@@ -103,6 +98,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 0;
+      flex-wrap: wrap;
+      gap: 15px;
     }
     
     .logo {
@@ -135,6 +132,17 @@
       background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+    
+    /* MENÚ HAMBURGUESA */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #475569;
+      cursor: pointer;
+      padding: 8px;
     }
     
     .nav-links {
@@ -171,6 +179,33 @@
     
     .nav-links a:hover::after {
       width: 100%;
+    }
+    
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .lang-selector {
+      display: flex;
+      gap: 5px;
+    }
+    
+    .lang-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      transition: all 0.2s;
+      opacity: 0.5;
+    }
+    
+    .lang-btn:hover {
+      opacity: 1;
+      transform: scale(1.05);
     }
     
     .btn {
@@ -272,6 +307,7 @@
       display: flex;
       gap: 16px;
       margin-bottom: 40px;
+      flex-wrap: wrap;
     }
     
     .hero-cta .btn {
@@ -282,6 +318,7 @@
     .hero-stats {
       display: flex;
       gap: 40px;
+      flex-wrap: wrap;
     }
     
     .stat {
@@ -325,6 +362,8 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
     
     .hero-card-user {
@@ -398,6 +437,8 @@
       border-radius: 16px;
       margin-bottom: 8px;
       border: 1px solid #f1f5f9;
+      flex-wrap: wrap;
+      gap: 10px;
     }
     
     .hero-card-item-left {
@@ -914,6 +955,7 @@
     .social-links {
       display: flex;
       gap: 16px;
+      flex-wrap: wrap;
     }
     
     .social-links a {
@@ -950,6 +992,9 @@
       color: #cbd5e1;
       text-decoration: none;
       transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     
     .footer-links a:hover {
@@ -963,7 +1008,10 @@
       color: #cbd5e1;
     }
     
-    /* RESPONSIVE */
+    /* ============================================
+       MEDIA QUERIES PARA MÓVIL
+       ============================================ */
+    
     @media (max-width: 1024px) {
       .hero-content {
         grid-template-columns: 1fr;
@@ -977,20 +1025,79 @@
         grid-template-columns: repeat(2, 1fr);
       }
       
-      .nav-links {
-        display: none;
+      .steps {
+        grid-template-columns: repeat(3, 1fr);
       }
       
       .step:not(:last-child)::after {
-        display: none;
+        display: block;
       }
     }
     
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 40px;
+      /* HEADER RESPONSIVE */
+      .header {
+        padding: 12px 20px;
+        width: calc(100% - 20px);
+        border-radius: 60px;
       }
       
+      .header .container {
+        flex-wrap: wrap;
+      }
+      
+      .menu-toggle {
+        display: block;
+        order: 1;
+      }
+      
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px 0 10px;
+        order: 2;
+      }
+      
+      .nav-links.active {
+        display: flex;
+      }
+      
+      .nav-links a {
+        justify-content: center;
+        padding: 10px;
+      }
+      
+      .header-actions {
+        order: 0;
+        margin-left: auto;
+      }
+      
+      /* HERO MÓVIL */
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .hero p {
+        font-size: 16px;
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+      }
+      
+      .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .hero-stats {
+        justify-content: center;
+        text-align: center;
+      }
+      
+      /* TARJETAS EN MÓVIL */
       .features-grid,
       .pricing-grid,
       .testimonials-grid,
@@ -1000,37 +1107,108 @@
         grid-template-columns: 1fr;
       }
       
-      .cta-large h2 {
+      .step:not(:last-child)::after {
+        display: none;
+      }
+      
+      /* SECCIONES */
+      .section-title {
         font-size: 32px;
+      }
+      
+      .section-subtitle {
+        font-size: 16px;
+      }
+      
+      .feature-card {
+        padding: 30px 20px;
+      }
+      
+      .pricing-card {
+        padding: 30px 25px;
+      }
+      
+      /* FOOTER */
+      .footer-grid {
+        gap: 30px;
+        text-align: center;
+      }
+      
+      .footer-logo {
+        justify-content: center;
+      }
+      
+      .social-links {
+        justify-content: center;
+      }
+      
+      .footer-links ul li a {
+        justify-content: center;
+      }
+      
+      /* CTA */
+      .cta-large h2 {
+        font-size: 28px;
+      }
+      
+      .cta-large p {
+        font-size: 16px;
+      }
+      
+      .cta-large .btn {
+        padding: 14px 32px;
+        font-size: 16px;
+      }
+      
+      /* HERO CARD */
+      .hero-card {
+        padding: 20px;
+      }
+      
+      .hero-card-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .hero-card-item-badge {
+        align-self: flex-start;
       }
     }
     
-    /* Selector de idioma y botones del header */
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    
-    .lang-selector {
-      display: flex;
-      gap: 5px;
-    }
-    
-    .lang-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      padding: 4px 8px;
-      border-radius: 8px;
-      transition: all 0.2s;
-      opacity: 0.5;
-    }
-    
-    .lang-btn:hover {
-      opacity: 1;
-      transform: scale(1.05);
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+      
+      .header {
+        width: calc(100% - 16px);
+      }
+      
+      .hero h1 {
+        font-size: 28px;
+      }
+      
+      .section-title {
+        font-size: 28px;
+      }
+      
+      .price {
+        font-size: 36px;
+      }
+      
+      .header-actions {
+        gap: 8px;
+      }
+      
+      .lang-btn {
+        font-size: 12px;
+        padding: 4px 6px;
+      }
+      
+      .btn-outline {
+        padding: 8px 16px;
+        font-size: 12px;
+      }
     }
   </style>
 </head>
@@ -1049,7 +1227,11 @@
         <span class="logo-text">IG Analyzer</span>
       </div>
       
-      <nav class="nav-links">
+      <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <nav class="nav-links" id="navLinks">
         <a href="#caracteristicas"><i class="fas fa-crown"></i> <span data-i18n="nav_features">Características</span></a>
         <a href="#como-funciona"><i class="fas fa-compass"></i> <span data-i18n="nav_howitworks">Cómo funciona</span></a>
         <a href="#precios"><i class="fas fa-tag"></i> <span data-i18n="nav_pricing">Precios</span></a>
@@ -1514,6 +1696,40 @@
 
   <script>
     // ============================================
+    // MENÚ HAMBURGUESA
+    // ============================================
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = menuToggle.querySelector('i');
+        if (icon) {
+          if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        }
+      });
+      
+      // Cerrar menú al hacer clic en un enlace
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+          const icon = menuToggle.querySelector('i');
+          if (icon) {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+      });
+    }
+    
+    // ============================================
     // FUNCIONES DE COMPRA
     // ============================================
     
@@ -1690,7 +1906,7 @@
         feature_3_title: "Guaranteed security",
         feature_3_desc: "We don't store your data. Everything is local and private.",
         how_badge: "Easy as that",
-        how_title: "3 steps and you're already gossiping",
+        how_title: "3 steps and you're already snooping",
         how_subtitle: "Couldn't be simpler",
         step_1_title: "Install the extension",
         step_1_desc: "Add IG Analyzer to your favorite browser",
